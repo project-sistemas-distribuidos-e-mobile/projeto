@@ -17,7 +17,7 @@ Run `npm run dev:server` for a dev server. Navigate to `http://localhost:5000/`.
 
 ## Developers
 
-*[José Mourão](https://github.com/josemouraocpt) 🐵
-*[Diego Diniz](https://github.com/DiegoDiniz59)
-*[Lucas Pinas](https://github.com/Lucas1598698)
-*[Marcos Iuri](https://github.com/marcosiuri)
+* [José Mourão](https://github.com/josemouraocpt) 🐵
+* [Diego Diniz](https://github.com/DiegoDiniz59)
+* [Lucas Pinas](https://github.com/Lucas1598698)
+* [Marcos Iuri](https://github.com/marcosiuri)
