@@ -11,9 +11,9 @@ export class AppComponent {
 
   ngOnInit() {
     // Ao carregar a página faz a requisição ao back-end
-    api.get('/filmes2')
-      .then(response => {
-        console.log(response);
-      }).catch(error => console.log(error));
+    // api.get('/filmes2')
+    //   .then(response => {
+    //     console.log(response);
+    //   }).catch(error => console.log(error));
   }
 }
