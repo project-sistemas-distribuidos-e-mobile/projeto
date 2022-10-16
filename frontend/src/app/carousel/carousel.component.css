@@ -1,6 +1,12 @@
-div#content{
+div#carouselExampleInterval{
     position: absolute;
-    top: 135px;
+    top: 55px;
     left: 50%;
     transform: translate(-50%);
+    width: 100%;
+}
+.carousel-item{
+    object-fit: cover;
+    height: 555px;
+    width: 100%;
 }

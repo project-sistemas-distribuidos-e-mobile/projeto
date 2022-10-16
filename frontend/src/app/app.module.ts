@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { FilmesComponent } from './filmes/filmes.component';
+import { SeriesComponent } from './series/series.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CarouselComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    FilmesComponent,
+    SeriesComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,8 @@ const app = expres();
 app.use(cors({
     origin: 'http://localhost:4200'
 }));
+
+
 app.use(routes);
 
 app.listen(5000, () => {

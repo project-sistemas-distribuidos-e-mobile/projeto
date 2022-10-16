@@ -3,11 +3,10 @@ import { Router } from "express";
 const routes = Router();
 
 import FilmesController from './controllers/FilmesController'
+import Home from './controllers/Home'
 
-routes.get('/filmes', (req, res) => {
-    res.send("Rota de filmes");
-})
-
-routes.get('/filmes2', FilmesController.getPopularMovies);
+routes.get('/', Home)
+routes.get('/filmes', FilmesController.getMovies);
+routes.get('/series', FilmesController.getTvShows);
 
 export default routes;
