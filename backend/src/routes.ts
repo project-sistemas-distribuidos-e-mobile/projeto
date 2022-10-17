@@ -8,5 +8,6 @@ import Home from './controllers/Home'
 routes.get('/', Home)
 routes.get('/filmes', FilmesController.getMovies);
 routes.get('/series', FilmesController.getTvShows);
+routes.get('/animation', FilmesController.getAnimations);
 
 export default routes;

@@ -14,7 +14,6 @@ export class FilmesComponent implements OnInit {
   ngOnInit():void {
     api.get('/filmes')
     .then(response => {
-      //console.log(response.data)
       const data = response.data;
       data.forEach((element:any) => {
         const movie = new MovieModel();
@@ -25,9 +24,9 @@ export class FilmesComponent implements OnInit {
         movie.rate = element.rate;
         movie.release = element.release;
         movie.genre = element.genre;
+        movie.bg_poster = element.bg_poster;
         this.movies.push(movie);
       });
-      console.log(this.movies);
     }).catch(error => console.log(error))  
   }
 }

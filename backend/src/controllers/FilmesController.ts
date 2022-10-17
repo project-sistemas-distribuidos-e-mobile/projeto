@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import DataFetch from "../services/FetchService";
 import {TvShowModel} from '../models/TvshowModel';
 import {MovieModel} from '../models/MovieModel';
+import {AnimationModel} from '../models/AnimationModel';
 
 export default{
     async getMovies(req: Request, res: Response){
@@ -38,7 +39,24 @@ export default{
             show.bg_poster += element.backdrop_path;
             shows.push(show);
         });
-        //console.log(shows);
         res.send(shows);
+    },
+    async getAnimations(req: Request, res: Response){
+        let animations: {}[] = [];
+        const animation = new DataFetch();
+        const response = await animation.getAnimations;
+        response.forEach(element => {
+            const anime = new AnimationModel();
+            anime.title = element.title;
+            anime.overview = element.overview;
+            anime.release_date = element.first_air_date;
+            anime.language = element.original_language;
+            anime.rate = element.vote_average;
+            anime.genre = element.genre_ids;
+            anime.poster += element.poster_path;
+            anime.bg_poster += element.backdrop_path;
+            animations.push(anime);
+        });
+        res.send(animations);
     }
 }

@@ -8,6 +8,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FilmesComponent } from './filmes/filmes.component';
 import { SeriesComponent } from './series/series.component';
+import { AnimationsComponent } from './animations/animations.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SeriesComponent } from './series/series.component';
     CarouselComponent,
     SearchBarComponent,
     FilmesComponent,
-    SeriesComponent
+    SeriesComponent,
+    AnimationsComponent
   ],
   imports: [
     BrowserModule,

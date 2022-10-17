@@ -15,7 +15,6 @@ export class SeriesComponent implements OnInit {
   ngOnInit(): void {
     api.get('/series')
     .then(response => {
-      //console.log(response.data)
       const data = response.data;
       data.forEach((element:any) => {
         const show = new TvShowModel();
@@ -29,7 +28,6 @@ export class SeriesComponent implements OnInit {
         show.bg_poster = element.bg_poster;
         this.shows.push(show);
       });
-      console.log(this.shows);
     }).catch(error => console.log(error))  
   }
 

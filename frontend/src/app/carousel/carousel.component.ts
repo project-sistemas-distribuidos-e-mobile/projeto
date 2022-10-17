@@ -16,7 +16,7 @@ export class CarouselComponent implements OnInit {
     api.get('/filmes')
     .then(response => {
       const data = response.data;
-      for(let i = 0; i<= 4; i++){
+      for(let i = 0; i<= 2; i++){
         const poster = new Poster();
         poster.url = data[i].bg_poster;
         poster.title = data[i].title;
@@ -27,13 +27,23 @@ export class CarouselComponent implements OnInit {
     api.get('/series')
     .then(response => {
       const data = response.data;
-      for(let i = 0; i<= 4; i++){
+      for(let i = 0; i<= 3; i++){
         const poster = new Poster();
         poster.url = data[i].bg_poster;
         poster.title = data[i].title;
         this.posters.push(poster);
       }
-      console.log(this.posters);
+    }).catch(error => console.log(error));
+
+    api.get('/animation')
+    .then(response => {
+      const data = response.data;
+      for(let i = 0; i<= 2; i++){
+        const poster = new Poster();
+        poster.url = data[i].bg_poster;
+        poster.title = data[i].title;
+        this.posters.push(poster);
+      }
     }).catch(error => console.log(error));
   }
 
