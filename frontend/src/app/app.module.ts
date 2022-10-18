@@ -10,6 +10,7 @@ import { FilmesComponent } from './filmes/filmes.component';
 import { SeriesComponent } from './series/series.component';
 import { AnimationsComponent } from './animations/animations.component';
 import { GamesComponent } from './games/games.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GamesComponent } from './games/games.component';
     FilmesComponent,
     SeriesComponent,
     AnimationsComponent,
-    GamesComponent
+    GamesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

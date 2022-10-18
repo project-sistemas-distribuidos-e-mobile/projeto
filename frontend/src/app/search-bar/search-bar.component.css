@@ -8,21 +8,17 @@ div#search{
 }
 
 input{
-    background-color: rgba(0, 0, 0, 0.363);
+    background-color: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
 }
+
+::placeholder{
+    color: white;
+}
+
 input:focus{
     background-color: rgba(0, 0, 0, 0.247);
     box-shadow: none;
     color: white;
-}
-
-button{
-    color: white;
-    background-color: rgb(99, 25, 139);
-}
-button:hover{
-    color: white;
-    background-color: rgb(94, 25, 131);
 }

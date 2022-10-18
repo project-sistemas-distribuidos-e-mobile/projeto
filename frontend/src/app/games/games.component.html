@@ -1,7 +1,7 @@
 <div id="container">
-    <h1 class="text-center"><a href="" class="text-decoration-none text-white">Jogos Populares</a></h1>
-    <div id="games" class="p-2">
-        <div *ngFor="let game of games" class="movie mx-2">
+    <h1 class="text-center"><a href="" class="text-decoration-none text-black">Jogos Populares</a></h1>
+    <div id="games" class="p-2 bg-light">
+        <div *ngFor="let game of games" class="game mx-2">
             <img src="{{game.cover_url}}" alt="{{game.name}}" class="poster rounded" href=" ">
             <a href="" class="fw-bold text-decoration-none rounded-bottom">{{game.name}}</a>
         </div>

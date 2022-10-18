@@ -22,7 +22,7 @@ export default{
             movie.bg_poster += element.backdrop_path;
             movies.push(movie);
         });
-        res.send(movies);
+        return res.send(movies);
     },
 
 
@@ -42,7 +42,7 @@ export default{
             tv_show.bg_poster += element.backdrop_path;
             shows.push(tv_show);
         });
-        res.send(shows);
+        return res.send(shows);
     },
 
 
@@ -62,7 +62,7 @@ export default{
             animation.bg_poster += element.backdrop_path;
             animations.push(animation);
         });
-        res.send(animations);
+        return res.send(animations);
     },
 
 
@@ -88,7 +88,6 @@ export default{
             }else{
                 game.cover_url += element.cover['image_id'] + '.jpg';
             }
-            //console.log(game.cover_url);
             game.first_release_date = element.first_release_date;
             game.genres = element.genres;
             game.involved_companies = element.involved_companies;
@@ -100,6 +99,6 @@ export default{
             game.websites = element.websites;
             games.push(game);
         });
-        res.send(games);
+        return res.send(games);
     }
 }

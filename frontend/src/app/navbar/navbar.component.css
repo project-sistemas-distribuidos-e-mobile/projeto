@@ -1,13 +1,6 @@
-nav {
-    color: white;
-    background-color: #2e1371b4;
-}
-
-div#links{
+ul#links{
     margin-left: auto;
 }
-
-div#links a:hover{
+div#navbarNavDropdown a:hover{
     border-radius: 5px;
-    background-color: #200e4d65;
 }
