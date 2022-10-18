@@ -5,7 +5,7 @@ export class GameModel{
     alternative_names: [] = [];
     artworks: [] = [];
     cover: number = 0;
-    cover_url: string = 'https://images.igdb.com/igdb/image/upload/t_cover_big/';
+    cover_url: string = '';
     first_release_date: string = '';
     genres: [] = [];
     involved_companies: [] = [];
