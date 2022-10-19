@@ -4,9 +4,9 @@ import { clientID } from "../keys";
 import { token } from "../keys";
 
 class DataFetch{
-    getPopularMovies = axios({
+    getFilmes = axios({
         method: 'get',
-        url: `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=pt-BR&page=1`,
+        url: `https://api.themoviedb.org/3/trending/movie/week?api_key=${key}`,
         responseType: 'json',
         })
         .then((res) => {
@@ -15,9 +15,9 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
-    getPopularTvShows = axios({
+    getSeries = axios({
         method: 'get',
-        url: `https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=pt-BR&page=1`,
+        url: `https://api.themoviedb.org/3/trending/tv/week?api_key=${key}`,
         responseType: 'json',
         })
         .then((res) => {
@@ -26,9 +26,9 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
-    getAnimations = axios({
+    getAnimacoes = axios({
         method: 'get',
-        url: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=pt-BR&with_genres=16&`,
+        url: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=16&vote_count.gte=80&sort_by=popularity.asc`,
         responseType: 'json',
         })
         .then((res) => {
@@ -37,7 +37,7 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
-    getGames = axios({
+    getJogos = axios({
         url: `https://api.igdb.com/v4/games`,
         method: 'POST',
         headers: {
@@ -45,7 +45,7 @@ class DataFetch{
             'Client-ID': clientID,
             'Authorization': `Bearer ${token}`,
         },
-        data: "fields name, age_ratings, aggregated_rating, alternative_names, artworks, cover.image_id, first_release_date, genres, involved_companies, language_supports, platforms, rating, storyline, themes, websites, screenshots.image_id; where rating > 80 & release_dates.date > 1591412743;limit 20;"
+        data: "fields id, name, first_release_date, summary, language_supports.language.name, rating, genres.name, cover.image_id, involved_companies.company.name, platforms.name; where rating > 80 & first_release_date > 946692000;limit 20;"
         })
         .then((res) => {
             const data = res.data;

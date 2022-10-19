@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { FilmesComponent } from './filmes/filmes.component';
-import { SeriesComponent } from './series/series.component';
-import { AnimationsComponent } from './animations/animations.component';
-import { GamesComponent } from './games/games.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FilmesComponent } from './components/filmes/filmes.component';
+import { SeriesComponent } from './components/series/series.component';
+import { AnimationsComponent } from './components/animations/animations.component';
+import { GamesComponent } from './components/games/games.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FooterComponent } from './footer/footer.component';
     SeriesComponent,
     AnimationsComponent,
     GamesComponent,
-    FooterComponent
+    FooterComponent,
+    PesquisaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
