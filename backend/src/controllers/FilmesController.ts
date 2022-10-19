@@ -101,15 +101,35 @@ export default{
             jogo.nome = element.name;
             jogo.data_lancamento = element.first_release_date;
             jogo.descricao = element.summary;
-            jogo.idioma = element.language_supports;
             jogo.nota = element.rating;
-            jogo.imagem += element.cover['image_id'] + '.jpg';     
-            element.platforms.forEach(e => {
-                jogo.plataformas.push(e['name']);
-            })
-            element.genres.forEach(e => {
-                jogo.genero.push(e['name']);
-            })
+            if(element.cover != undefined){
+                jogo.imagem += element.cover['image_id'] + '.jpg';  
+            }else if(element.artworks != undefined){
+                jogo.imagem += element.artworks['image_id'] + '.jpg';
+            }else if(element.screenshots != undefined){
+                jogo.imagem += element.screenshots['image_id'] + '.jpg';
+            }
+            if(element.artworks != undefined){
+                jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
+            } else if(element.screenshots != undefined){
+                jogo.background_imagem += element.screenshots[0]['image_id'] + '.jpg';
+            } else{
+                jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+            }
+            if(element.platforms != undefined){
+               element.platforms.forEach(e => {     
+                    jogo.plataformas.push(e['name']);
+                }) 
+            } else{
+                jogo.plataformas.push("Não informado");
+            }         
+            if(element.genres != undefined){
+               element.genres.forEach(e => {     
+                    jogo.genero.push(e['name']);
+                }) 
+            } else{
+                jogo.genero.push("Não informado");
+            }         
             if(element.involved_companies === undefined){
                 jogo.produtora.push('Produtora não informada');
             } else{
@@ -117,9 +137,89 @@ export default{
                     jogo.produtora.push(e['company']['name']);
                 })
             }
-            console.log('-=-=-=-=-=FIM DA ITERAÇÃO-=-=-=-=-=-=-=-=-')
             array_de_jogos.push(jogo);
         });
         return res.send(array_de_jogos);
-    }
+    },
+
+
+    async buscaPorNome(req: Request, res: Response){
+        let resultado_pesquisa: {}[] = [];
+        const fetch = new DataFetch();
+        const response = await fetch.getPorName;
+        response.forEach(element => {
+            const data = new Data();
+            data.id = element.id;
+            data.nome = element.title;
+            data.data_lancamento = element.first_release_date;
+            data.descricao = element.overview;
+            data.idioma = element.original_language;
+            data.nota = element.vote_average;
+            data.genero = element.genre_ids;
+            if(element.poster_path != null ){
+                data.imagem += element.poster_path;
+            } else{
+                data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+            }
+            if(element.backdrop_path != null ){
+                data.background_image += element.backdrop_path;
+            } else{
+                data.background_image = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+            }
+            resultado_pesquisa.push(data); 
+        });
+        return res.send(resultado_pesquisa);
+    },
+
+
+    async buscarJogoPorNome(req: Request, res: Response){
+        let array_de_jogos: {}[] = [];
+        const jogos_model = new DataFetch();
+        const response = await jogos_model.getJogoPorNome;
+        response.forEach(element => {
+            const jogo = new Jogo();
+            jogo.id = element.id;
+            jogo.nome = element.name;
+            jogo.data_lancamento = element.first_release_date;
+            jogo.descricao = element.summary;
+            jogo.nota = element.rating;
+            if(element.cover != undefined){
+                jogo.imagem += element.cover['image_id'] + '.jpg';  
+            }else if(element.artworks != undefined){
+                jogo.imagem += element.artworks['image_id'] + '.jpg';
+            }else if(element.screenshots != undefined){
+                jogo.imagem += element.screenshots['image_id'] + '.jpg';
+            }
+            if(element.artworks != undefined){
+                jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
+            } else if(element.screenshots != undefined){
+                jogo.background_imagem += element.screenshots[0]['image_id'] + '.jpg';
+            } else{
+                jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+            }
+            if(element.platforms != undefined){
+               element.platforms.forEach(e => {     
+                    jogo.plataformas.push(e['name']);
+                }) 
+            } else{
+                jogo.plataformas.push("Não informado");
+            }         
+            if(element.genres != undefined){
+               element.genres.forEach(e => {     
+                    jogo.genero.push(e['name']);
+                }) 
+            } else{
+                jogo.genero.push("Não informado");
+            }         
+            if(element.involved_companies === undefined){
+                jogo.produtora.push('Produtora não informada');
+            } else{
+                element.involved_companies.forEach(e => {
+                    jogo.produtora.push(e['company']['name']);
+                })
+            }
+            array_de_jogos.push(jogo);
+        });
+        return res.send(array_de_jogos);
+    },
 }

@@ -7,6 +7,7 @@ export class Jogo{
     nota: number = 0;
     genero: string[] = [];
     imagem: string = '';
+    background_imagem: string = '';
     produtora: string[] = [];
     plataformas: string[] = [];
 }
