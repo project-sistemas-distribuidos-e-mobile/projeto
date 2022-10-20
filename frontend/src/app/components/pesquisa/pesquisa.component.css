@@ -1,7 +1,28 @@
-div#conteudo{
+div#container{
     position: absolute;
-    top: 125px;
-    left: 50%;
-    transform: translate(-50%);
+    top: 105px;
+}
+
+div#conteudo{
+    margin: auto;
+    margin-top: 15px;
     width: 80%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.493);
+    overflow: hidden;
+}
+
+img{
+    max-height: 140px;
+    max-width: fit-content;
+    object-fit: contain;
+}
+
+
+p{
+    height: 50px;
+    line-break: auto;
+}
+
+a{
+    cursor: pointer;
 }

@@ -147,27 +147,27 @@ export default{
         let resultado_pesquisa: {}[] = [];
         const fetch = new DataFetch();
         const response = await fetch.getPorName;
-        response.forEach(element => {
+        for(let i = 0; i<= 5; i++){
             const data = new Data();
-            data.id = element.id;
-            data.nome = element.title;
-            data.data_lancamento = element.first_release_date;
-            data.descricao = element.overview;
-            data.idioma = element.original_language;
-            data.nota = element.vote_average;
-            data.genero = element.genre_ids;
-            if(element.poster_path != null ){
-                data.imagem += element.poster_path;
+            data.id = response[i].id;
+            data.nome = response[i].title;
+            data.data_lancamento = response[i].first_release_date;
+            data.descricao = response[i].overview;
+            data.idioma = response[i].original_language;
+            data.nota = response[i].vote_average;
+            data.genero = response[i].genre_ids;
+            if(response[i].poster_path != null ){
+                data.imagem += response[i].poster_path;
             } else{
                 data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
             }
-            if(element.backdrop_path != null ){
-                data.background_image += element.backdrop_path;
+            if(response[i].backdrop_path != null ){
+                data.background_image += response[i].backdrop_path;
             } else{
                 data.background_image = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
             }
             resultado_pesquisa.push(data); 
-        });
+        }
         return res.send(resultado_pesquisa);
     },
 

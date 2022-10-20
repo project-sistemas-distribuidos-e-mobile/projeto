@@ -20,7 +20,6 @@ export class CarouselComponent implements OnInit {
         poster.nome = response.data[i].nome;
         this.posters.push(poster);
       }
-      console.log(this.posters);
     }).catch(error => console.log(error));
 
     api.get('/series')
@@ -31,7 +30,6 @@ export class CarouselComponent implements OnInit {
         poster.nome = response.data[i].nome;
         this.posters.push(poster);
       }
-      console.log(this.posters);
     }).catch(error => console.log(error));
 
     api.get('/animacoes')
@@ -42,7 +40,6 @@ export class CarouselComponent implements OnInit {
         poster.nome = response.data[i].nome;
         this.posters.push(poster);
       }
-      console.log(this.posters);
     }).catch(error => console.log(error));
 
     api.get('/jogos')
@@ -53,7 +50,6 @@ export class CarouselComponent implements OnInit {
         poster.nome = response.data[i].nome;
         this.posters.push(poster);
       }
-      console.log(this.posters);
     }).catch(error => console.log(error));
   }
 }
