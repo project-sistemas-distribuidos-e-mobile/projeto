@@ -56,7 +56,14 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
-    getPorName = axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${busca}&include_adult=false&language=pt-BR`)
+    getFilmePorName = axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${busca}&include_adult=false&language=pt-BR`)
+        .then((res) => {
+            const data = res.data.results;
+            return data;
+        })
+        .catch(error => console.log(error));
+
+    getSeriePorName = axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${key}&query=${busca}&include_adult=false&language=pt-BR`)
         .then((res) => {
             const data = res.data.results;
             return data;

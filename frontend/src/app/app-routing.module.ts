@@ -6,7 +6,7 @@ import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'titulo/:nome', component: PesquisaComponent},
+  {path: 'resultados/:nome', component: PesquisaComponent},
 ];
 
 @NgModule({

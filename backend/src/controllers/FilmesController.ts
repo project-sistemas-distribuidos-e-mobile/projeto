@@ -143,16 +143,21 @@ export default{
     },
 
 
-    async buscaPorNome(req: Request, res: Response){
+    async buscarFilmePorNome(req: Request, res: Response){
         let resultado_pesquisa: {}[] = [];
         const fetch = new DataFetch();
-        const response = await fetch.getPorName;
+        const response = await fetch.getFilmePorName;
+        try{
         for(let i = 0; i<= 5; i++){
             const data = new Data();
             data.id = response[i].id;
             data.nome = response[i].title;
             data.data_lancamento = response[i].first_release_date;
-            data.descricao = response[i].overview;
+            if(response[i].overview == undefined || response[i].overview == ''){
+                data.descricao = "Descrição não encontrada.";
+            }else{
+                data.descricao = response[i].overview;
+            }
             data.idioma = response[i].original_language;
             data.nota = response[i].vote_average;
             data.genero = response[i].genre_ids;
@@ -168,7 +173,46 @@ export default{
             }
             resultado_pesquisa.push(data); 
         }
+    }
+    catch (error: any){
+        console.log(error);
+    }
         return res.send(resultado_pesquisa);
+    },
+
+    async buscarSeriePorNome(req: Request, res: Response){
+        let resultado_pesquisa: {}[] = [];
+        const fetch = new DataFetch();
+        const response = await fetch.getSeriePorName;
+        for(let i = 0; i < response.length; i++){
+            const data = new Data();    
+            data.id = response[i].id;
+            data.nome = response[i].name;
+            data.data_lancamento = response[i].first_release_date;
+            if(response[i].overview == undefined || response[i].overview == ''){
+                data.descricao = "Descrição não encontrada.";
+            }else{
+                data.descricao = response[i].overview;
+            }
+            data.idioma = response[i].original_language;
+            data.nota = response[i].vote_average;
+            data.genero = response[i].genre_ids;
+            if(response[i].poster_path != null ){
+                data.imagem += response[i].poster_path;
+            } else{
+                data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+            }
+            if(response[i].backdrop_path != null ){
+                data.background_image += response[i].backdrop_path;
+            } else{
+                data.background_image = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+            }
+            resultado_pesquisa.push(data);
+            if(i > 5){
+                break;
+            }
+        }
+        return res.send(resultado_pesquisa); 
     },
 
 

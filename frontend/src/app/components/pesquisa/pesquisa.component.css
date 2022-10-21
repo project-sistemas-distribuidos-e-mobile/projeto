@@ -1,19 +1,19 @@
 div#container{
     position: absolute;
     top: 105px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 div#conteudo{
-    margin: auto;
     margin-top: 15px;
-    width: 80%;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.493);
     overflow: hidden;
 }
 
 img{
     max-height: 140px;
-    max-width: fit-content;
+    max-width: 100px;
     object-fit: contain;
 }
 
