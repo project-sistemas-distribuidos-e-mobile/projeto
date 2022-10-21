@@ -13,6 +13,7 @@ import { GamesComponent } from './components/games/games.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { HomeComponent } from './components/home/home.component';
+import { TituloComponent } from './components/titulo/titulo.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HomeComponent } from './components/home/home.component';
     GamesComponent,
     FooterComponent,
     PesquisaComponent,
-    HomeComponent
+    HomeComponent,
+    TituloComponent
   ],
   imports: [
     BrowserModule,

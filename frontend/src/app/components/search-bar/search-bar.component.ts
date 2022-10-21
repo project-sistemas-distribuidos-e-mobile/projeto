@@ -11,14 +11,16 @@ export class SearchBarComponent implements OnInit {
   public procurar(nome: string){
     api.post(`/titulo/${nome}`, nome)
     .then(response => {
-      //console.log(response);
+      console.log(response);
     })
     .catch(error => console.log(error));
   }
 
+  public limpar_pesquisa(){
+    return this
+  }
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
