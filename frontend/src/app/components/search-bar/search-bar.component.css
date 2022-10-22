@@ -4,11 +4,11 @@ div#search{
     width: 75vw;
     left: 50%;
     transform: translate(-50%);
-    z-index: 5;
+    z-index: 2;
 }
 
 input{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.274);
     border: none;
     color: white;
 }

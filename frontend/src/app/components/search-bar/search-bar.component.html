@@ -1,18 +1,7 @@
 <div class="input-group mb-3" id="search">
-    <input #input 
-    type="text" 
-    class="form-control" 
-    placeholder="Ex: Homem-Aranha De Volta ao Lar" 
-    >
-
-
-    <button 
-    class="btn btn-primary" 
-    type="button" 
-    routerLink="/resultados/{{input.value}}" 
-    (click)="procurar(input.value)"
-    onclick=""
-    >
+    <input #input type="text" class="form-control" placeholder="Ex: Homem-Aranha De Volta ao Lar" 
+    (blur)="procurar(input.value)">
+    <button class="btn btn-primary" type="button" routerLink="/resultados/{{input.value}}" (click)="input.value = ''">
         <i class="bi bi-search"></i>
     </button>
 </div>

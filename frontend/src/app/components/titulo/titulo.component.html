@@ -1,19 +1,16 @@
-<div class="container">
-    background imagem
-    <div>
-        imagem
+<div class="row p-4 text-white" id="container" style="background: url({{resultado.background_image}});">
+    <div class="col-sm-4">
+        <img src="{{resultado.imagem}}" alt="{{resultado.nome}}">
     </div>
-    <div>
-        <h2>Titulo do resultado</h2>
-        <h6>data</h6>
-        <h6>idioma</h6>
+    <div class="col">
+        <h2>{{resultado.nome}}</h2>
+        <h6>{{resultado.data_lancamento}}</h6>
+        <h6>{{resultado.idioma}}</h6>
         <ul>
-            <h6>genero</h6>
-            <li>genero 1</li>
-            <li>genero 2</li>
-            <li>genero 3</li>
+            <h6>generos</h6>
+            <li>{{resultado.genero}}</li>
         </ul>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, aspernatur! Deleniti quibusdam quod laudantium ullam consectetur repellendus error voluptatibus eveniet officiis distinctio nihil, amet repellat hic vitae doloremque alias quia voluptate illo ratione ex id. Sequi mollitia excepturi minus consequatur voluptatum? A, ad. Reprehenderit fugiat itaque quae eos repellat explicabo?</p>
+        <p>{{resultado.descricao}}</p>
         <h6>streamings</h6>
         <ul>
             <h6>elenco</h6>
@@ -21,6 +18,5 @@
             <li>artista 2</li>
             <li>artista 3</li>
         </ul>
-
     </div>
 </div>
