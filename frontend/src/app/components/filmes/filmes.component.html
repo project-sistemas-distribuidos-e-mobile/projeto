@@ -3,7 +3,7 @@
     <div id="filmes" class="p-2">
         <div *ngFor="let filme of filmes" class="movie mx-2 bg-light">
             <img src="{{filme.imagem}}" alt="{{filme.nome}}" class="poster rounded">
-            <a class="fw-bold text-decoration-none rounded-bottom">{{filme.nome}}</a>
+            <a class="fw-bold text-decoration-none rounded-bottom" (click)="abrirFilme(filme.id)" routerLink="titulo/{{filme.id}}">{{filme.nome}}</a>
         </div>
     </div>
 </div>

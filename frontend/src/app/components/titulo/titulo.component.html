@@ -1,22 +1,25 @@
-<div class="row p-4 text-white" id="container" style="background: url({{resultado.background_image}});">
-    <div class="col-sm-4">
-        <img src="{{resultado.imagem}}" alt="{{resultado.nome}}">
-    </div>
-    <div class="col">
-        <h2>{{resultado.nome}}</h2>
-        <h6>{{resultado.data_lancamento}}</h6>
-        <h6>{{resultado.idioma}}</h6>
-        <ul>
+<div id="container">
+    <img src="{{filme.background_poster}}" alt="" id="bg">
+    <div class="row p-4 text-white" id="conteudo">
+        <div class="col-sm-4" id="poster">
+            <img src="{{filme.poster}}" alt="">
+        </div>
+        <div class="col">
+            <h2>{{filme.nome}}</h2>
+            <h6>{{filme.data_lancamento}}</h6>
+            <h6>{{filme.idioma}}</h6>
             <h6>generos</h6>
-            <li>{{resultado.genero}}</li>
-        </ul>
-        <p>{{resultado.descricao}}</p>
-        <h6>streamings</h6>
-        <ul>
-            <h6>elenco</h6>
-            <li>artista 1</li>
-            <li>artista 2</li>
-            <li>artista 3</li>
-        </ul>
+            <ul>   
+                <li *ngFor="let genero of filme.generos">{{genero}}</li>
+            </ul>
+            <p>{{filme.descricao}}</p>
+            <h6>{{filme.nota}} <i class="bi bi-star"></i></h6>
+            <h6>Favoritar <i class="bi bi-heart"></i></h6>
+            <h6>{{filme.status}}</h6>
+            <h6>Produtoras</h6>
+            <ul>
+                <li *ngFor="let produtora of filme.produtoras">{{produtora}}</li>
+            </ul>
+        </div>
     </div>
 </div>

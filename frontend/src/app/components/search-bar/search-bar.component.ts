@@ -9,7 +9,7 @@ import api from 'src/services/api';
 export class SearchBarComponent implements OnInit {
 
   public procurar(nome: string){
-    api.post(`/titulo/${nome}`, nome)
+    api.post(`/pesquisa/${nome}`, nome)
     .then(response => {
     })
     .catch(error => console.log(error));

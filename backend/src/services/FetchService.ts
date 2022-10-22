@@ -3,6 +3,7 @@ import { key } from "../keys";
 import { clientID } from "../keys";
 import { token } from "../keys";
 import {busca} from "../routes"
+import { filme } from "../routes";
 
 class DataFetch{
     getFilmes = axios({
@@ -56,6 +57,9 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
+
+
+
     getFilmePorName = axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${busca}&include_adult=false&language=pt-BR`)
         .then((res) => {
             const data = res.data.results;
@@ -63,12 +67,14 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
+
     getSeriePorName = axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${key}&query=${busca}&include_adult=false&language=pt-BR`)
         .then((res) => {
             const data = res.data.results;
             return data;
         })
         .catch(error => console.log(error));
+
 
     getJogoPorNome = axios({
         url: `https://api.igdb.com/v4/games`,
@@ -85,6 +91,14 @@ class DataFetch{
             return data;
         })
         .catch(error => console.log(error));    
+
+
+
+    getFilmePorID = axios.get(`https://api.themoviedb.org/3/movie/${filme}?api_key=${key}&language=pt-BR`)
+    .then(response => {
+        return response.data;
+    })
+    .catch(error => console.log(error));    
 }
 
 export default DataFetch;

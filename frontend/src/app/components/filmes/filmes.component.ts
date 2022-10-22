@@ -17,4 +17,11 @@ export class FilmesComponent implements OnInit {
       this.filmes = response.data;
     }).catch(error => console.log(error))  
   }
+
+  abrirFilme(id: number){
+    api.post(`/movie/${id}`, id)
+    .then(response => {
+    })
+    .catch(error => console.log(error));
+  }
 }
