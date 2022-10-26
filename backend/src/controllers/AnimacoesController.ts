@@ -26,7 +26,7 @@ export default{
             }
             array_de_animacoes.push(animacao);
         });
-        return res.send(array_de_animacoes);
+        return res.json(array_de_animacoes);
     },
 
     //Retorna uma animação buscada pelo ID conforme o Modelo
@@ -57,6 +57,6 @@ export default{
         animacao.poster += response.poster_path;
         animacao.background_poster += response.backdrop_path;
 
-        return res.send(animacao);
+        return res.json(animacao);
     }
 }

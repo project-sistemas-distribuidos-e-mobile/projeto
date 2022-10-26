@@ -26,7 +26,7 @@ export default{
             }
             array_de_filmes.push(filme); 
         });
-        return res.send(array_de_filmes);
+        return res.json(array_de_filmes);
     },
     
     //Retorna um array de 5 filmes buscados pelo nome conforme o Modelo
@@ -60,7 +60,7 @@ export default{
     catch (error: any){
         console.log(error);
     }
-        return res.send(resultado_pesquisa);
+        return res.json(resultado_pesquisa);
     },
 
     //Retorna 1 filme buscado pelo ID conforme o Modelo
@@ -91,6 +91,6 @@ export default{
         filme.poster += response.poster_path;
         filme.background_poster += response.backdrop_path;
 
-        return res.send(filme);
+        return res.json(filme);
     }
 }

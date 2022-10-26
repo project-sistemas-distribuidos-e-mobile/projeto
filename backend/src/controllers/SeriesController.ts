@@ -26,7 +26,7 @@ export default{
             }
             array_de_series.push(serie);
         });
-        return res.send(array_de_series);
+        return res.json(array_de_series);
     },
 
     //Retorna um array de 5 seriados buscados pelo nome conforme o Modelo
@@ -58,7 +58,7 @@ export default{
                 break;
             }
         }
-        return res.send(resultado_pesquisa); 
+        return res.json(resultado_pesquisa); 
     },
 
     //Retorna 1 seriado buscado pelo ID conforme o Modelo
@@ -89,7 +89,7 @@ export default{
         serie.poster += response.poster_path;
         serie.background_poster += response.backdrop_path;
 
-        return res.send(serie);
+        return res.json(serie);
     }
 
 }

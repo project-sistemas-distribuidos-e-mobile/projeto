@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import DataFetch from "../services/FetchService";
 import { Jogo } from "../models/Jogo";
-import { Titulo } from "../models/Titulo";
+import { TituloJogo } from "../models/TituloJogo";
 
 export default{
     //Retorna um array de 20 jogos conforme o Modelo
@@ -30,7 +30,7 @@ export default{
             }
             array_de_jogos.push(jogo);
         });
-        return res.send(array_de_jogos);
+        return res.json(array_de_jogos);
     },
 
     //Retorna um array de 5 jogos buscados pelo nome conforme o Modelo
@@ -59,6 +59,52 @@ export default{
             }
             array_de_jogos.push(jogo);
         });
-        return res.send(array_de_jogos);
+        return res.json(array_de_jogos);
+    },
+
+    //Retorna um jogo especifico buscados pelo ID conforme o Modelo
+    async buscarJogoPorId(req: Request, res: Response){
+        const jogo = new TituloJogo();
+        const fetch = new DataFetch();
+        const response = await fetch.getJogoPorID;
+        response.forEach(element => {
+            jogo.nome = element.name;
+            jogo.descricao = element.summary;
+            jogo.data_lancamento = element.first_release_date;
+            jogo.nota = element.rating;
+            if(element.genres.length >= 1){
+                element.genres.forEach(genre =>{
+                    jogo.generos.push(genre['name']);
+                })
+            }else{
+                jogo.generos.push(element.genres);
+            }
+           
+            if(element.involved_companies.length >= 1){
+                element.involved_companies.forEach(produtora =>{
+                    jogo.produtoras.push(produtora['company']['name']);
+                })
+            }else{
+                jogo.produtoras.push(element.involved_companies);
+            }
+            if(element.platforms.length >= 1){
+                element.platforms.forEach(plataforma =>{
+                    jogo.plataformas.push(plataforma['name']);
+                })
+            }else{
+                jogo.plataformas.push(element.production_companies);
+            }
+            if(element.cover != undefined){
+                jogo.poster += element.cover['image_id'] + '.jpg';  
+            }else if(element.artworks != undefined){
+                jogo.poster += element.artworks[0]['image_id'] + '.jpg';   
+            }
+            if(element.artworks != undefined){
+                jogo.background_poster += element.artworks[0]['image_id'] + '.jpg';
+            } else{
+                jogo.background_poster = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+            }
+        })
+        return res.json(jogo);
     }
 }

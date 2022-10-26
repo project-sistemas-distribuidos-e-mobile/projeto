@@ -116,6 +116,24 @@ class DataFetch{
         return response.data;
     })
     .catch(error => console.log(error));    
+
+    //Busca os jogos por nome/titulo
+    getJogoPorID = axios({
+        url: `https://api.igdb.com/v4/games`,
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Client-ID': clientID,
+            'Authorization': `Bearer ${token}`,
+        },
+        data: `fields name, summary, first_release_date, rating, genres.name, involved_companies.company.name, cover.image_id, artworks.image_id, platforms.name, url; 
+        where id = 1942;`
+        })
+        .then((res) => {
+            const data = res.data;
+            return data;
+        })
+        .catch(error => console.log(error)); 
 }
 
 export default DataFetch;
