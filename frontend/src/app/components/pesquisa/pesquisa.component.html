@@ -37,12 +37,12 @@
         <h1 class="text-center my-2">Jogos</h1>
         <div *ngFor="let resultado of resultados_jogo">
             <div id="conteudo" class="d-flex border border-light rounded bg-light">
-                <a class="text-black text-decoration-none">
-                    <img src="{{resultado.imagem}}" alt="{{resultado.nome}}" class="rounded-start">
+                <a class="text-black text-decoration-none" routerLink="/titulo/{{resultado.id}}">
+                    <img src="{{resultado.imagem}}" alt="{{resultado.nome}}" class="rounded-start" (click)="abrirJogo(resultado.id)">
                 </a>
                 <div class="d-flex flex-column ms-3 p-2">
-                    <a>
-                        <h5>{{resultado.nome}}</h5>
+                    <a routerLink="/titulo/{{resultado.id}}" class="text-black text-decoration-none">
+                        <h5 (click)="abrirJogo(resultado.id)">{{resultado.nome}}</h5>
                     </a>
                     <p>{{resultado.descricao}}</p>
                 </div>

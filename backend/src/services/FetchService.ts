@@ -127,7 +127,7 @@ class DataFetch{
             'Authorization': `Bearer ${token}`,
         },
         data: `fields name, summary, first_release_date, rating, genres.name, involved_companies.company.name, cover.image_id, artworks.image_id, platforms.name, url; 
-        where id = 1942;`
+        where id = ${id};`
         })
         .then((res) => {
             const data = res.data;

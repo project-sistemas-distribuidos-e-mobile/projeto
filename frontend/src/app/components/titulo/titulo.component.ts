@@ -20,21 +20,17 @@ export class TituloComponent implements OnInit {
       api.get('/serie')
       .then(response => {
         this.filme = response.data;
-        console.log('this.filme', this.filme);
       }).catch(error => console.log(error));
     } else if(route == 'filmes'){
       api.get('/filme')
       .then(response => {
         this.filme = response.data;
-        console.log('this.filme', this.filme);
       }).catch(error => console.log(error));
     } else if(route == 'animacoes'){
       api.get('/animacao')
       .then(response => {
         this.filme = response.data;
-        console.log('this.filme', this.filme);
       }).catch(error => console.log(error));
     }
   }
-
 }
