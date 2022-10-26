@@ -18,5 +18,12 @@ export class AnimationsComponent implements OnInit {
       this.animacoes = response.data;
     }).catch(error => console.log(error))  
   }
+  abrirAnimacao(id: number){
+    //fazer uma mudança para consulta tanto de filmes quanto de tv shows
+    api.post(`/categoria/${id}`, id)
+    .then(response => {
+    })
+    .catch(error => console.log(error));
+  }
 
 }

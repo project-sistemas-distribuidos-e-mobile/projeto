@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import api from '../../../services/api';
 import { Titulo } from 'src/models/Titulo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-titulo',
@@ -9,14 +10,31 @@ import { Titulo } from 'src/models/Titulo';
 })
 export class TituloComponent implements OnInit {
   filme: Titulo = new Titulo;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    api.get('/filme')
-    .then(response => {
-      console.log(response.data);
-      this.filme = response.data;
-    }).catch(error => console.log(error));
+    const dividi = this.router.url.replace("/titulo/", "").split('/');
+    const route = dividi[0];
+    console.log(route);
+    if(route == 'series'){
+      api.get('/serie')
+      .then(response => {
+        this.filme = response.data;
+        console.log('this.filme', this.filme);
+      }).catch(error => console.log(error));
+    } else if(route == 'filmes'){
+      api.get('/filme')
+      .then(response => {
+        this.filme = response.data;
+        console.log('this.filme', this.filme);
+      }).catch(error => console.log(error));
+    } else if(route == 'animacoes'){
+      api.get('/animacao')
+      .then(response => {
+        this.filme = response.data;
+        console.log('this.filme', this.filme);
+      }).catch(error => console.log(error));
+    }
   }
 
 }

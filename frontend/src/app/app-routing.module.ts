@@ -8,7 +8,7 @@ import { TituloComponent } from './components/titulo/titulo.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'resultados/:nome', component: PesquisaComponent},
-  {path: 'titulo/:id', component: TituloComponent}, 
+  {path: 'titulo/:tipo/:id', component: TituloComponent}, 
 ]
 
 @NgModule({

@@ -8,7 +8,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FilmesComponent } from './components/filmes/filmes.component';
 import { SeriesComponent } from './components/series/series.component';
-import { AnimationsComponent } from './components/animations/animations.component';
+import { AnimationsComponent } from './components/animacoes/animations.component';
 import { GamesComponent } from './components/games/games.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';

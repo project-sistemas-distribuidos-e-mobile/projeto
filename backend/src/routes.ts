@@ -1,30 +1,39 @@
 import { Router } from "express";
+import FilmesController from './controllers/FilmesController'
+import AnimacoesController from "./controllers/AnimacoesController";
+import SeriesController from "./controllers/SeriesController";
+import JogosControllers from "./controllers/JogosControllers";
+
 
 const routes = Router();
-let busca = 'teste';
-let filme: string = '';
+let busca: string = 'Teste';
+let id: string = '550';
 
-import FilmesController from './controllers/FilmesController'
-
+//Rotas da home
 routes.get('/filmes', FilmesController.buscarFilmes);
-routes.get('/series', FilmesController.buscarSeries);
-routes.get('/animacoes', FilmesController.buscarAnimacoes);
-routes.get('/jogos', FilmesController.buscarJogos);
+routes.get('/series', SeriesController.buscarSeries);
+routes.get('/animacoes', AnimacoesController.buscarAnimacoes);
+routes.get('/jogos', JogosControllers.buscarJogos);
 
+//Rotas para pequisa por nome
 routes.post('/pesquisa/:nome', (req, res) => {
-    res.status(200).send({"status": "received"});
     busca =  req.url.replace('/pesquisa/', '');
-});
-
-routes.post('/movie/:id', (req, res) => {
-    filme = req.url.replace('/movie/', '')
+    busca = busca.replaceAll('%20', '-');
     res.status(200).send({"status": "received"});
 });
-
-routes.get('/filme', FilmesController.buscarFilmePorId);
-
 routes.get('/res/filme', FilmesController.buscarFilmePorNome);
-routes.get('/res/serie', FilmesController.buscarSeriePorNome);
-routes.get('/res/jogo', FilmesController.buscarJogoPorNome);
+routes.get('/res/serie', SeriesController.buscarSeriePorNome);
+routes.get('/res/jogo', JogosControllers.buscarJogoPorNome);
 
-export {routes, busca, filme};
+
+//Rotas para conteudo especifico
+routes.post('/categoria/:id', (req, res) => {
+    id = req.url.replace('/categoria/', '');
+    res.status(200).send({"status": "received"});
+});
+routes.get('/filme', FilmesController.buscarFilmePorId);
+routes.get('/serie', SeriesController.buscarSeriePorId);
+routes.get('/animacao', AnimacoesController.buscarAnimacaoPorId);
+
+
+export {routes, busca, id};

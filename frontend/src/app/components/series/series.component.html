@@ -3,7 +3,7 @@
     <div id="series" class="p-2 bg-light">
         <div *ngFor="let serie of series" class="show mx-2">
             <img src="{{serie.imagem}}" alt="{{serie.nome}}" class="poster rounded">
-            <a class="fw-bold text-decoration-none rounded-bottom">{{serie.nome}}</a>
+            <a class="fw-bold text-decoration-none rounded-bottom" (click)="abrirSerie(serie.id)" routerLink="titulo/series/{{serie.id}}">{{serie.nome}}</a>
         </div>
     </div>
 </div> 

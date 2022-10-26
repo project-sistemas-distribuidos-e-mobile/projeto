@@ -17,4 +17,11 @@ export class SeriesComponent implements OnInit {
       this.series = response.data;
     }).catch(error => console.log(error))  
   }
+
+  abrirSerie(id: number){
+    api.post(`/categoria/${id}`, id)
+    .then(response => {
+    })
+    .catch(error => console.log(error));
+  }
 }

@@ -16,6 +16,22 @@ export class PesquisaComponent implements OnInit {
   resultados_jogo: Jogo[] = [];
   
   constructor(private router: Router) { }
+  
+  abrirFilme(id: number){
+    api.post(`/categoria/${id}`, id)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => console.log(error));
+  }
+  
+  abrirSerie(id: number){
+    api.post(`/categoria/${id}`, id)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => console.log(error));
+  }
 
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
@@ -38,5 +54,5 @@ export class PesquisaComponent implements OnInit {
     }).catch(error => console.log(error));
   }
 
-  
+ 
 }

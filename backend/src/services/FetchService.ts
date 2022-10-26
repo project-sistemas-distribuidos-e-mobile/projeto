@@ -3,9 +3,10 @@ import { key } from "../keys";
 import { clientID } from "../keys";
 import { token } from "../keys";
 import {busca} from "../routes"
-import { filme } from "../routes";
+import { id } from "../routes";
 
 class DataFetch{
+    //Busca os filmes que estão em alta na semana
     getFilmes = axios({
         method: 'get',
         url: `https://api.themoviedb.org/3/trending/movie/week?api_key=${key}&include_adult=false&language=pt-BR`,
@@ -17,6 +18,7 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
+    //Busca os seriados/animações que estão em alta na semana    
     getSeries = axios({
         method: 'get',
         url: `https://api.themoviedb.org/3/trending/tv/week?api_key=${key}&include_adult=false&language=pt-BR`,
@@ -28,10 +30,11 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
-
+    //TONAR ISSO MAIS DINAMICO
+    //Busca os seriados animados mais populares e com nota acima de 90
     getAnimacoes = axios({
         method: 'get',
-        url: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=16&vote_count.gte=90&sort_by=popularity.asc&include_adult=false&language=pt-BR`,
+        url: `https://api.themoviedb.org/3/discover/tv?api_key=${key}&with_genres=16&vote_count.gte=90&sort_by=popularity.asc&include_adult=false&language=pt-BR`,
         responseType: 'json',
         })
         .then((res) => {
@@ -40,7 +43,8 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
-
+    //Busca os jogos mais populares, com nota acima de 90 e data de lançamento superior a 2018 ou 2020 
+    //não sei ao cero :P
     getJogos = axios({
         url: `https://api.igdb.com/v4/games`,
         method: 'POST',
@@ -57,25 +61,23 @@ class DataFetch{
         })
         .catch(error => console.log(error));
 
+    //Busca os filmes por nome/titulo
+    getFilmePorName = axios.get(`https://api.themoviedb.org/3/search/movie/?api_key=${key}&language=pt-BR&query=${busca}`)
+    .then((res) => {
+        const data = res.data.results; 
+        return data;
+    })
+    .catch(error => console.log(error))
 
-
-
-    getFilmePorName = axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${busca}&include_adult=false&language=pt-BR`)
+    //Busca os seriados por nome/titulo (animações inclusas)
+    getSeriePorName = axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${key}&language=pt-BR&query=${busca}`)
         .then((res) => {
             const data = res.data.results;
             return data;
         })
         .catch(error => console.log(error));
 
-
-    getSeriePorName = axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${key}&query=${busca}&include_adult=false&language=pt-BR`)
-        .then((res) => {
-            const data = res.data.results;
-            return data;
-        })
-        .catch(error => console.log(error));
-
-
+    //Busca os jogos por nome/titulo
     getJogoPorNome = axios({
         url: `https://api.igdb.com/v4/games`,
         method: 'POST',
@@ -93,8 +95,23 @@ class DataFetch{
         .catch(error => console.log(error));    
 
 
+    //Busca um filme a partir do seu ID
+    getFilmePorID = axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=pt-BR`)
+    .then(response => {
+        return response.data;
+    })
+    .catch(error => console.log(error));
+    
+    //Busca um seriado a partir do seu ID
+    getSeriePorID = axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${key}&language=pt-BR`)
+    .then(response => {
+        return response.data;
+    })
+    .catch(error => console.log(error));  
 
-    getFilmePorID = axios.get(`https://api.themoviedb.org/3/movie/${filme}?api_key=${key}&language=pt-BR`)
+    //Busca uma animação a partir do seu ID
+    //melhorar para ficar mais dinamico
+    getAnimacaoPorID = axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${key}&language=pt-BR`)
     .then(response => {
         return response.data;
     })
