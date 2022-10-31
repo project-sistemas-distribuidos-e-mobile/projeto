@@ -36,10 +36,9 @@ export default{
         const response = await fetch.getAnimacaoPorID;
         animacao.nome = response.name;
         animacao.descricao = response.overview;
-        animacao.data_lancamento = response.first_air_date;
-        animacao.idioma = response.original_language;
-        animacao.status = response.status;
-        animacao.nota = response.vote_average;
+        animacao.data_lancamento = response.first_air_date.split('-').reverse().join('-');
+        animacao.idioma = response.original_language.toUpperCase();
+        animacao.nota = response.vote_average.toFixed(2);
         if(response.genres.length > 1){
             response.genres.forEach(genre =>{
                 animacao.generos.push(genre['name']);
@@ -55,8 +54,6 @@ export default{
             animacao.produtoras.push(response.production_companies);
         }
         animacao.poster += response.poster_path;
-        animacao.background_poster += response.backdrop_path;
-
         return res.json(animacao);
     }
 }

@@ -48,11 +48,6 @@ export default{
             } else{
                 data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
             }
-            if(response[i].backdrop_path != null ){
-                data.background_image += response[i].backdrop_path;
-            } else{
-                data.background_image = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
             resultado_pesquisa.push(data);
             if(i > 5){
                 break;
@@ -68,10 +63,9 @@ export default{
         const response = await fetch.getSeriePorID;
         serie.nome = response.name;
         serie.descricao = response.overview;
-        serie.data_lancamento = response.first_air_date;
-        serie.idioma = response.original_language;
-        serie.status = response.status;
-        serie.nota = response.vote_average;
+        serie.data_lancamento = response.first_air_date.split('-').reverse().join('-');
+        serie.idioma = response.original_language.toUpperCase();
+        serie.nota = response.vote_average.toFixed(2);
         if(response.genres.length > 1){
             response.genres.forEach(genre =>{
                 serie.generos.push(genre['name']);
@@ -87,8 +81,6 @@ export default{
             serie.produtoras.push(response.production_companies);
         }
         serie.poster += response.poster_path;
-        serie.background_poster += response.backdrop_path;
-
         return res.json(serie);
     }
 

@@ -1,27 +1,26 @@
-<div id="container">
-    <img src="{{jogo.background_poster}}" alt="" id="bg">
-    <div class="row p-4 text-white" id="conteudo">
-        <div class="col-sm-4" id="poster">
-            <img src="{{jogo.poster}}" alt="">
-        </div>
-        <div class="col">
-            <h2>{{jogo.nome}}</h2>
-            <h6>{{jogo.data_lancamento}}</h6>
-            <h6>generos</h6>
-            <ul>   
-                <li *ngFor="let genero of jogo.generos">{{genero}}</li>
-            </ul>
-            <p>{{jogo.descricao}}</p>
-            <h6>{{jogo.nota}} <i class="bi bi-star"></i></h6>
-            <h6>Favoritar <i class="bi bi-heart"></i></h6>
-            <h6>Produtoras</h6>
-            <ul>
-                <li *ngFor="let produtora of jogo.produtoras">{{produtora}}</li>
-            </ul>
-            <h6>Plataformas</h6>
-            <ul>
-                <li *ngFor="let plataforma of jogo.plataformas">{{plataforma}}</li>
-            </ul>
-        </div>
+<div class="row p-4 bg-light" id="conteudo">
+    <div class="col-sm-4" id="poster">
+        <img src="{{jogo.poster}}" alt="">
+    </div>
+    <div class="col">
+        <h2>{{jogo.nome}}</h2>
+        <h6>Data de lançamento: {{jogo.data_lancamento}}</h6>
+        <h6>Genêros</h6>
+        <ul>   
+            <li *ngFor="let genero of jogo.generos"><small class="fw-bold">{{genero}}</small></li>
+        </ul>
+        <p>{{jogo.descricao}}</p>
+        <div class="mb-2">
+            <a class="mx-2 text-decoration-none text-black"><span>{{jogo.nota}} <i class="bi bi-star text-warning"></i></span></a>
+            <a class="mx-2 text-decoration-none text-black"><span>Favoritar <i class="bi bi-heart text-danger"></i></span></a>
+        </div> 
+        <h6>Produtoras</h6>
+        <ul>
+            <li *ngFor="let produtora of jogo.produtoras">{{produtora}}</li>
+        </ul>
+        <h6>Plataformas</h6>
+        <ul>
+            <li *ngFor="let plataforma of jogo.plataformas">{{plataforma}}</li>
+        </ul>
     </div>
 </div>

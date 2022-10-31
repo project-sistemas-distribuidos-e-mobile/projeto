@@ -1,25 +1,23 @@
-<div id="container">
-    <img src="{{filme.background_poster}}" alt="" id="bg">
-    <div class="row p-4 text-white" id="conteudo">
-        <div class="col-sm-4" id="poster">
-            <img src="{{filme.poster}}" alt="">
-        </div>
-        <div class="col">
-            <h2>{{filme.nome}}</h2>
-            <h6>{{filme.data_lancamento}}</h6>
-            <h6>{{filme.idioma}}</h6>
-            <h6>generos</h6>
-            <ul>   
-                <li *ngFor="let genero of filme.generos">{{genero}}</li>
-            </ul>
-            <p>{{filme.descricao}}</p>
-            <h6>{{filme.nota}} <i class="bi bi-star"></i></h6>
-            <h6>Favoritar <i class="bi bi-heart"></i></h6>
-            <h6>{{filme.status}}</h6>
-            <h6>Produtoras</h6>
-            <ul>
-                <li *ngFor="let produtora of filme.produtoras">{{produtora}}</li>
-            </ul>
-        </div>
+<div class="row p-4 bg-light" id="conteudo">
+    <div class="col-sm-4" id="poster">
+        <img src="{{filme.poster}}" alt="">
+    </div>
+    <div class="col">
+        <h2>{{filme.nome}}</h2>
+        <h6>Data de lançamento: {{filme.data_lancamento}}</h6>
+        <h6>Idioma original: {{filme.idioma}}</h6>
+        <h6>Genêros</h6>
+        <ul>   
+            <li *ngFor="let genero of filme.generos"><small class="fw-bold">{{genero}}</small></li>
+        </ul>
+        <p>{{filme.descricao}}</p>
+        <div class="mb-2">
+            <a class="mx-2 text-decoration-none text-black"><span>{{filme.nota}} <i class="bi bi-star text-warning"></i></span></a>
+            <a class="mx-2 text-decoration-none text-black"><span>Favoritar <i class="bi bi-heart text-danger"></i></span></a>
+        </div> 
+        <h6>Produtoras</h6>
+        <ul>
+            <li *ngFor="let produtora of filme.produtoras">{{produtora}}</li>
+        </ul>
     </div>
 </div>

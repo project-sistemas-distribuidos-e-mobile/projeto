@@ -6,7 +6,7 @@ import JogosControllers from "./controllers/JogosControllers";
 
 
 const routes = Router();
-let busca: string = 'Teste';
+let busca: string = 'test';
 let id: string = '550';
 
 //Rotas da home

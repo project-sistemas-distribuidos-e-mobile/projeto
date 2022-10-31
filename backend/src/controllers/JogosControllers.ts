@@ -50,13 +50,6 @@ export default{
             }else if(element.screenshots != undefined){
                 jogo.imagem += element.screenshots['image_id'] + '.jpg';
             }
-            if(element.artworks != undefined){
-                jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
-            } else if(element.screenshots != undefined){
-                jogo.background_imagem += element.screenshots[0]['image_id'] + '.jpg';
-            } else{
-                jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
             array_de_jogos.push(jogo);
         });
         return res.json(array_de_jogos);
@@ -67,44 +60,46 @@ export default{
         const jogo = new TituloJogo();
         const fetch = new DataFetch();
         const response = await fetch.getJogoPorID;
-        response.forEach(element => {
-            jogo.nome = element.name;
-            jogo.descricao = element.summary;
-            jogo.data_lancamento = element.first_release_date;
-            jogo.nota = element.rating;
-            if(element.genres.length >= 1){
-                element.genres.forEach(genre =>{
-                    jogo.generos.push(genre['name']);
-                })
-            }else{
-                jogo.generos.push(element.genres);
-            }
-           
-            if(element.involved_companies.length >= 1){
-                element.involved_companies.forEach(produtora =>{
-                    jogo.produtoras.push(produtora['company']['name']);
-                })
-            }else{
-                jogo.produtoras.push(element.involved_companies);
-            }
-            if(element.platforms.length >= 1){
-                element.platforms.forEach(plataforma =>{
-                    jogo.plataformas.push(plataforma['name']);
-                })
-            }else{
-                jogo.plataformas.push(element.production_companies);
-            }
-            if(element.cover != undefined){
-                jogo.poster += element.cover['image_id'] + '.jpg';  
-            }else if(element.artworks != undefined){
-                jogo.poster += element.artworks[0]['image_id'] + '.jpg';   
-            }
-            if(element.artworks != undefined){
-                jogo.background_poster += element.artworks[0]['image_id'] + '.jpg';
-            } else{
-                jogo.background_poster = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
-        })
+        try{
+            response.forEach(element => {
+                jogo.nome = element.name;
+                jogo.descricao = element.summary;
+                const date = new Date(element.first_release_date * 1000);
+                const release = date.getDate() + '-' + (date.getMonth() == 0 ? date.getMonth() + 1 :  date.getMonth()) + '-' + date.getFullYear();
+                jogo.data_lancamento = release;
+                jogo.nota = element.rating.toFixed(2);
+                if(element.genres.length >= 1){
+                    element.genres.forEach(genre =>{
+                        jogo.generos.push(genre['name']);
+                    })
+                }else{
+                    jogo.generos.push(element.genres);
+                }
+                if(element.involved_companies.length >= 1){
+                    element.involved_companies.forEach(produtora =>{
+                        jogo.produtoras.push(produtora['company']['name']);
+                    })
+                }else{
+                    jogo.produtoras.push(element.involved_companies);
+                }
+                if(element.platforms.length >= 1){
+                    element.platforms.forEach(plataforma =>{
+                        jogo.plataformas.push(plataforma['name']);
+                    })
+                }else{
+                    jogo.plataformas.push(element.production_companies);
+                }
+                if(element.cover != undefined){
+                    jogo.poster += element.cover['image_id'] + '.jpg';  
+                }else if(element.artworks != undefined){
+                    jogo.poster += element.artworks[0]['image_id'] + '.jpg';   
+                }
+            })
+        } 
+        catch (error){
+            console.log(error);
+        }
+
         return res.json(jogo);
     }
 }

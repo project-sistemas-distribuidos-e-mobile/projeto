@@ -86,7 +86,7 @@ class DataFetch{
             'Client-ID': clientID,
             'Authorization': `Bearer ${token}`,
         },
-        data: `fields id, name, first_release_date, summary, language_supports.language.name, rating, genres.name, cover.image_id, artworks.image_id, involved_companies.company.name, platforms.name; search "%${busca}%"; limit 5;`
+        data: `fields id, name, first_release_date, summary, language_supports.language.name, rating, genres.name, cover.image_id, artworks.image_id, involved_companies.company.name, platforms.name; search "${busca}"; limit 5;`
         })
         .then((res) => {
             const data = res.data;
@@ -126,8 +126,7 @@ class DataFetch{
             'Client-ID': clientID,
             'Authorization': `Bearer ${token}`,
         },
-        data: `fields name, summary, first_release_date, rating, genres.name, involved_companies.company.name, cover.image_id, artworks.image_id, platforms.name, url; 
-        where id = ${id};`
+        data: `fields name, summary, first_release_date, rating, genres.name, involved_companies.company.name, cover.image_id, artworks.image_id, platforms.name, url; where id = ${id};`
         })
         .then((res) => {
             const data = res.data;

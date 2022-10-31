@@ -49,11 +49,6 @@ export default{
             } else{
                 data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
             }
-            if(response[i].backdrop_path != null ){
-                data.background_image += response[i].backdrop_path;
-            } else{
-                data.background_image = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
             resultado_pesquisa.push(data); 
         }
     }
@@ -70,10 +65,9 @@ export default{
         const response = await fetch.getFilmePorID;
         filme.nome = response.title;
         filme.descricao = response.overview;
-        filme.data_lancamento = response.release_date;
-        filme.idioma = response.original_language;
-        filme.status = response.status;
-        filme.nota = response.vote_average;
+        filme.data_lancamento = response.release_date.split('-').reverse().join('-');
+        filme.idioma = response.original_language.toUpperCase();
+        filme.nota = response.vote_average.toFixed(2);
         if(response.genres.length > 1){
             response.genres.forEach(genre =>{
                 filme.generos.push(genre['name']);
@@ -89,8 +83,6 @@ export default{
             filme.produtoras.push(response.production_companies);
         }
         filme.poster += response.poster_path;
-        filme.background_poster += response.backdrop_path;
-
         return res.json(filme);
     }
 }

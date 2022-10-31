@@ -16,13 +16,13 @@ export class TituloComponent implements OnInit {
     const dividi = this.router.url.replace("/titulo/", "").split('/');
     const route = dividi[0];
     console.log(route);
-    if(route == 'series'){
-      api.get('/serie')
+    if(route == 'filmes'){
+      api.get('/filme')
       .then(response => {
         this.filme = response.data;
       }).catch(error => console.log(error));
-    } else if(route == 'filmes'){
-      api.get('/filme')
+    } else if(route == 'series'){
+      api.get('/serie')
       .then(response => {
         this.filme = response.data;
       }).catch(error => console.log(error));

@@ -1,7 +1,7 @@
 export class TituloJogo{
     nome: string = '';
     descricao: string = '';
-    data_lancamento: number = 0;
+    data_lancamento: string = '';
     nota: number = 0;
     generos: string[] = [];
     plataformas: string[] = [];
