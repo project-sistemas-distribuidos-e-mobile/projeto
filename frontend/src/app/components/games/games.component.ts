@@ -15,7 +15,7 @@ export class GamesComponent implements OnInit {
     api.get('/jogos')
     .then(response => {
       this.jogos = response.data;
-    }).catch(error => console.log(error))  
+    }).catch(error => console.log(error));  
   }
 
 

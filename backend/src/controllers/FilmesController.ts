@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import axios from "axios";
 import DataFetch from "../services/FetchService";
 import { Data } from "../models/Data";
 import { Titulo } from "../models/Titulo";
@@ -7,25 +8,25 @@ export default{
     //Retorna um array de 20 filmes conforme o Modelo
     async buscarFilmes(req: Request, res: Response){
         let array_de_filmes: {}[] = [];
-        const filmes_model = new DataFetch();
-        const response = await filmes_model.getFilmes;
-        response.forEach(element => {
-            const filme = new Data();
-            filme.id = element.id;
-            filme.nome = element.title;
-            filme.descricao = element.overview;
-            if(element.poster_path != null ){
-                filme.imagem += element.poster_path;
-            } else{
-                filme.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
-            if(element.backdrop_path != null ){
-                filme.background_image += element.backdrop_path;
-            } else{
-                filme.background_image = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
-            array_de_filmes.push(filme); 
-        });
+        const fetch = new DataFetch();
+        const response = await fetch.getFilmes;
+            response.forEach(element => {
+                const filme = new Data();      
+                filme.id = element.id;        
+                filme.nome = element.title;
+                filme.descricao = element.overview;
+                if(element.poster_path != null ){
+                    filme.imagem += element.poster_path;
+                } else{
+                    filme.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+                }
+                if(element.backdrop_path != null ){
+                    filme.background_image += element.backdrop_path;
+                } else{
+                    filme.background_image = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+                }
+                array_de_filmes.push(filme);
+            });
         return res.json(array_de_filmes);
     },
     
