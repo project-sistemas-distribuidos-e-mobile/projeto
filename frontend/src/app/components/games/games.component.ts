@@ -17,8 +17,10 @@ export class GamesComponent implements OnInit {
       this.jogos = response.data;
     }).catch(error => console.log(error))  
   }
+
+
   abrirJogo(id: number){
-    api.post(`/categoria/${id}`, id)
+    api.post(`/titulo/${id}`, id)
     .then(response => {
     })
     .catch(error => console.log(error));

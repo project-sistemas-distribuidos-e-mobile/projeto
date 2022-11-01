@@ -9,27 +9,33 @@ export default{
         let array_de_jogos: {}[] = [];
         const jogos_model = new DataFetch();
         const response = await jogos_model.getJogos;
-        response.forEach(element => {
-            const jogo = new Jogo();
-            jogo.id = element.id;
-            jogo.nome = element.name;
-            jogo.descricao = element.summary;
-            if(element.cover != undefined){
-                jogo.imagem += element.cover['image_id'] + '.jpg';  
-            }else if(element.artworks != undefined){
-                jogo.imagem += element.artworks['image_id'] + '.jpg';
-            }else if(element.screenshots != undefined){
-                jogo.imagem += element.screenshots['image_id'] + '.jpg';
-            }
-            if(element.artworks != undefined){
-                jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
-            } else if(element.screenshots != undefined){
-                jogo.background_imagem += element.screenshots[0]['image_id'] + '.jpg';
-            } else{
-                jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
-            array_de_jogos.push(jogo);
-        });
+        try{
+            response.forEach(element => {
+                const jogo = new Jogo();
+                jogo.id = element.id;
+                jogo.nome = element.name;
+                jogo.descricao = element.summary;
+                if(element.cover != undefined){
+                    jogo.imagem += element.cover['image_id'] + '.jpg';  
+                }else if(element.artworks != undefined){
+                    jogo.imagem += element.artworks['image_id'] + '.jpg';
+                }else if(element.screenshots != undefined){
+                    jogo.imagem += element.screenshots['image_id'] + '.jpg';
+                }
+                if(element.artworks != undefined){
+                    jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
+                } else if(element.screenshots != undefined){
+                    jogo.background_imagem += element.screenshots[0]['image_id'] + '.jpg';
+                } else{
+                    jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+                }
+                array_de_jogos.push(jogo);
+            });
+        }
+        catch (error){
+            console.log(error);
+        }
+
         return res.json(array_de_jogos);
     },
 

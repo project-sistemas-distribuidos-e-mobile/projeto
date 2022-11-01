@@ -19,7 +19,7 @@ export class FilmesComponent implements OnInit {
   }
 
   abrirFilme(id: number){
-    api.post(`/categoria/${id}`, id)
+    api.post(`/titulo/${id}`, id)
     .then(response => {
     })
     .catch(error => console.log(error));
