@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import DataFetch from "../services/FetchService";
+import Home from "../services/HomeService";
+import Pesquisa from "../services/PesquisaService";
+import Conteudo from "../services/ConteudoService";
 import { Jogo } from "../models/Jogo";
 import { TituloJogo } from "../models/TituloJogo";
 
@@ -7,7 +9,7 @@ export default{
     //Retorna um array de 20 jogos conforme o Modelo
     async buscarJogos(req: Request, res: Response){
         let array_de_jogos: {}[] = [];
-        const jogos_model = new DataFetch();
+        const jogos_model = new Home();
         const response = await jogos_model.getJogos;
         try{
             response.forEach(element => {
@@ -42,8 +44,8 @@ export default{
     //Retorna um array de 5 jogos buscados pelo nome conforme o Modelo
     async buscarJogoPorNome(req: Request, res: Response){
         let array_de_jogos: {}[] = [];
-        const jogos_model = new DataFetch();
-        const response = await jogos_model.getJogoPorNome;
+        const jogos = new Pesquisa();
+        const response = await jogos.getJogoPorNome;
         response.forEach(element => {
             const jogo = new Jogo();
             jogo.id = element.id;
@@ -64,7 +66,7 @@ export default{
     //Retorna um jogo especifico buscados pelo ID conforme o Modelo
     async buscarJogoPorId(req: Request, res: Response){
         const jogo = new TituloJogo();
-        const fetch = new DataFetch();
+        const fetch = new Conteudo();
         const response = await fetch.getJogoPorID;
         try{
             response.forEach(element => {
@@ -105,7 +107,6 @@ export default{
         catch (error){
             console.log(error);
         }
-
         return res.json(jogo);
     }
 }

@@ -16,7 +16,7 @@ routes.get('/jogos', JogosControllers.buscarJogos);
 
 //Rotas para pequisa por nome
 routes.post('/pesquisa/:nome', (req, res) => {
-    busca =  req.url.replace('/pesquisa/', '');
+    busca =  req.params['nome'];
     busca = busca.replaceAll('%20', '+');
     res.status(200).send({"status": "received"});
 });
@@ -24,10 +24,9 @@ routes.get('/res/filme', FilmesController.buscarFilmePorNome);
 routes.get('/res/serie', SeriesController.buscarSeriePorNome);
 routes.get('/res/jogo', JogosControllers.buscarJogoPorNome);
 
-
 //Rotas para conteudo especifico
 routes.post('/titulo/:id', (req, res) => {
-    id = req.url.replace('/titulo/', '');
+    id = req.params['id'];
     res.status(200).send({"status": "received"});
 });
 routes.get('/filme', FilmesController.buscarFilmePorId);

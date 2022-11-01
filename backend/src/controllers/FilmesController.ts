@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import axios from "axios";
-import DataFetch from "../services/FetchService";
+import Home from "../services/HomeService";
+import Pesquisa from "../services/PesquisaService";
+import Conteudo from "../services/ConteudoService";
 import { Data } from "../models/Data";
 import { Titulo } from "../models/Titulo";
 
@@ -8,7 +9,7 @@ export default{
     //Retorna um array de 20 filmes conforme o Modelo
     async buscarFilmes(req: Request, res: Response){
         let array_de_filmes: {}[] = [];
-        const fetch = new DataFetch();
+        const fetch = new Home();
         const response = await fetch.getFilmes;
             response.forEach(element => {
                 const filme = new Data();      
@@ -33,7 +34,7 @@ export default{
     //Retorna um array de 5 filmes buscados pelo nome conforme o Modelo
     async buscarFilmePorNome(req: Request, res: Response){
         let resultado_pesquisa: {}[] = [];
-        const fetch = new DataFetch();
+        const fetch = new Pesquisa();
         const response = await fetch.getFilmePorName;
         try{
         for(let i = 0; i<= 5; i++){
@@ -62,7 +63,7 @@ export default{
     //Retorna 1 filme buscado pelo ID conforme o Modelo
     async buscarFilmePorId(req: Request, res: Response){
         const filme = new Titulo();
-        const fetch = new DataFetch();
+        const fetch = new Conteudo();
         const response = await fetch.getFilmePorID;
         filme.nome = response.title;
         filme.descricao = response.overview;
