@@ -20,7 +20,7 @@ export class AnimationsComponent implements OnInit {
   }
   abrirAnimacao(id: number){
     //fazer uma mudança para consulta tanto de filmes quanto de tv shows
-    api.post(`/titulo/${id}`, id)
+    api.post(`/titulo/animacao/${id}`, id)
     .then(response => {
     })
     .catch(error => console.log(error));

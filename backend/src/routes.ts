@@ -7,6 +7,7 @@ import JogosControllers from "./controllers/JogosControllers";
 const routes = Router();
 let busca: string = 'safe-guard';
 let id: string = '9999';
+let categoria: string = '';
 
 //Rotas da home
 routes.get('/filmes', FilmesController.buscarFilmes);
@@ -25,7 +26,8 @@ routes.get('/res/serie', SeriesController.buscarSeriePorNome);
 routes.get('/res/jogo', JogosControllers.buscarJogoPorNome);
 
 //Rotas para conteudo especifico
-routes.post('/titulo/:id', (req, res) => {
+routes.post('/titulo/:categoria/:id', (req, res) => {
+    categoria = req.params['categoria'];
     id = req.params['id'];
     res.status(200).send({"status": "received"});
 });
@@ -35,4 +37,4 @@ routes.get('/animacao', AnimacoesController.buscarAnimacaoPorId);
 routes.get('/jogo', JogosControllers.buscarJogoPorId);
 
 
-export {routes, busca, id};
+export {routes, busca, id, categoria};

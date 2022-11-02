@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import Home from "../services/HomeService";
-import Pesquisa from "../services/PesquisaService";
-import Conteudo from "../services/ConteudoService";
+import SerieService from "../services/SerieService";
 import { Data } from "../models/Data";
 import { Titulo } from "../models/Titulo";
 
@@ -9,7 +7,7 @@ export default{
     //Retorna um array de 20 seriados conforme o Modelo 
     async buscarSeries(req: Request, res: Response){
         let array_de_series: {}[] = [];
-        const series_model = new Home();
+        const series_model = new SerieService();
         const response = await series_model.getSeries;
         response.forEach(element => {
             const serie = new Data();
@@ -34,7 +32,7 @@ export default{
     //Retorna um array de 5 seriados buscados pelo nome conforme o Modelo
     async buscarSeriePorNome(req: Request, res: Response){
         let resultado_pesquisa: {}[] = [];
-        const fetch = new Pesquisa();
+        const fetch = new SerieService();
         const response = await fetch.getSeriePorName;
         for(let i = 0; i < response.length; i++){
             const data = new Data();    
@@ -61,7 +59,7 @@ export default{
     //Retorna 1 seriado buscado pelo ID conforme o Modelo
     async buscarSeriePorId(req: Request, res: Response){
         const serie = new Titulo();
-        const fetch = new Conteudo();
+        const fetch = new SerieService();
         const response = await fetch.getSeriePorID;
         serie.nome = response.name;
         serie.descricao = response.overview;

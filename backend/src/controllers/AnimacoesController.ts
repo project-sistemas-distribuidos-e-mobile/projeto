@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import Home from "../services/HomeService";
-import Conteudo from "../services/ConteudoService";
+import AnimacaoService from "../services/AnimacaoService";
 import { Data } from "../models/Data";
 import { Titulo } from "../models/Titulo";
 
@@ -8,7 +7,7 @@ export default{
     //Retorna um array de 20 animações(seriados) conforme o Modelo
     async buscarAnimacoes(req: Request, res: Response){
         let array_de_animacoes: {}[] = [];
-        const animacoes_model = new Home();
+        const animacoes_model = new AnimacaoService();
         const response = await animacoes_model.getAnimacoes;
         response.forEach(element => {
             const animacao = new Data();
@@ -33,7 +32,7 @@ export default{
     //Retorna uma animação buscada pelo ID conforme o Modelo
     async buscarAnimacaoPorId(req: Request, res: Response){
         const animacao = new Titulo();
-        const fetch = new Conteudo();
+        const fetch = new AnimacaoService();
         const response = await fetch.getAnimacaoPorID;
         animacao.nome = response.name;
         animacao.descricao = response.overview;
