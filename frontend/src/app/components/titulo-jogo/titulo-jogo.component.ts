@@ -8,7 +8,7 @@ import { TituloJogo } from 'src/models/TituloJogo';
   styleUrls: ['./titulo-jogo.component.css']
 })
 export class TituloJogoComponent implements OnInit {
-  jogo: TituloJogo = new TituloJogo;
+  jogo: TituloJogo = new TituloJogo();
 
   constructor() { }
 

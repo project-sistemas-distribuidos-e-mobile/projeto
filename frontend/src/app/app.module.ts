@@ -15,6 +15,9 @@ import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { HomeComponent } from './components/home/home.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './components/login/auth.service';
 
 @NgModule({
   declarations: [
@@ -30,13 +33,15 @@ import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.compon
     PesquisaComponent,
     HomeComponent,
     TituloComponent,
-    TituloJogoComponent
+    TituloJogoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

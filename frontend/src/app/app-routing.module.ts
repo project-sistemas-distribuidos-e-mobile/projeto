@@ -4,10 +4,12 @@ import { HomeComponent } from './components/home/home.component';
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'resultados/:nome', component: PesquisaComponent},
   {path: 'titulo/:tipo/:id', component: TituloComponent}, 
   {path: 'titulo/:id', component: TituloJogoComponent}, 

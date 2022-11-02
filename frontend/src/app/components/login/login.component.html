@@ -1,0 +1,13 @@
+<div class="mb-3 row" id="form">
+    <label for="email" class="col-sm-2 col-form-label">Usuário</label>
+    <div class="col-sm-10">
+      <input  [(ngModel)]="usuario.email" type="email" class="form-control" id="email">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="senha" class="col-sm-2 col-form-label">Senha</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="usuario.senha" type="password" class="form-control" id="senha">
+    </div>
+    <input class="btn btn-primary" type="submit" value="Submit" (click)="login()">
+</div>

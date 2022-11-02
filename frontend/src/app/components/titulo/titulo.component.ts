@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./titulo.component.css']
 })
 export class TituloComponent implements OnInit {
-  filme: Titulo = new Titulo;
+  filme: Titulo = new Titulo();
   constructor(private router: Router) { }
 
   ngOnInit(): void {
