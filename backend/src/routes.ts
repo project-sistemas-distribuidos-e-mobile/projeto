@@ -8,6 +8,11 @@ const routes = Router();
 let busca: string = 'safe-guard';
 let id: string = '9999';
 let categoria: string = '';
+let pagina : string = '1';
+
+routes.post('/home/:page', (req, res) => {
+    pagina = req.params['page'];
+})
 
 //Rotas da home
 routes.get('/filmes', FilmesController.buscarFilmes);
@@ -37,4 +42,4 @@ routes.get('/animacao', AnimacoesController.buscarAnimacaoPorId);
 routes.get('/jogo', JogosControllers.buscarJogoPorId);
 
 
-export {routes, busca, id, categoria};
+export {routes, busca, id, categoria, pagina};

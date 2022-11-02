@@ -2,10 +2,11 @@ import axios from "axios";
 import { key } from "../keys";
 import { id } from "../routes";
 import {busca} from "../routes";
+import {pagina} from "../routes"
 
 class FilmeService{
     //Busca os filmes que estão em alta na semana
-    getFilmes = axios(`https://api.themoviedb.org/3/trending/movie/week?api_key=${key}&include_adult=false&language=pt-BR`)
+    getFilmes = axios(`https://api.themoviedb.org/3/trending/movie/week?api_key=${key}&language=pt-BR&page=${pagina}`)
     .then((res) => {
         const data = res.data.results;
         return data;

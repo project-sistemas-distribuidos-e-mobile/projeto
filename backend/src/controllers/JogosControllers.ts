@@ -73,7 +73,7 @@ export default{
                 const date = new Date(element.first_release_date * 1000);
                 const release = date.getDate() + '-' + (date.getMonth() == 0 ? date.getMonth() + 1 :  date.getMonth()) + '-' + date.getFullYear();
                 jogo.data_lancamento = release;
-                jogo.nota = element.rating.toFixed(2);
+                jogo.nota = element.rating != undefined ? element.rating.toFixed(2) : 0;
                 if(element.genres.length >= 1){
                     element.genres.forEach(genre =>{
                         jogo.generos.push(genre['name']);

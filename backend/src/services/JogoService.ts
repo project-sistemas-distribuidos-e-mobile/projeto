@@ -15,7 +15,7 @@ class JogoService{
             'Client-ID': clientID,
             'Authorization': `Bearer ${token}`,
         },
-        data: "fields id, name, first_release_date, summary, language_supports.language.name, rating, genres.name, cover.image_id, artworks.image_id, screenshots.image_id, involved_companies.company.name, platforms.name; where rating > 94 & first_release_date > 1514772000;limit 20; sort rating asc;"
+        data: `fields id, name, first_release_date, summary, language_supports.language.name, rating, genres.name, cover.image_id, artworks.image_id, screenshots.image_id, involved_companies.company.name, platforms.name; where rating > ${Math.floor(Math.random() * 101)} & first_release_date > 1514772000;limit 20; sort rating asc;`
         })
         .then((res) => {
             const data = res.data;
