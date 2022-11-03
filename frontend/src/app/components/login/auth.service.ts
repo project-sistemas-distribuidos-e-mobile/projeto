@@ -14,7 +14,7 @@ export class AuthService {
 
   fazerLogin(usuario: Usuario){
     if(usuario.email != '' && usuario.senha != ''){
-      api.post(`/login?user=${CryptoJS.MD5(usuario.email).toString()}&password=${CryptoJS.MD5(usuario.senha).toString()}`);
+      api.post(`/login?user=${usuario.email}&password=${CryptoJS.MD5(usuario.senha).toString()}`);
       this.usuarioAutenticado = true;
       // this.router.navigate(['/']);
     } else{
