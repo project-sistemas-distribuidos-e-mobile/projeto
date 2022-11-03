@@ -14,11 +14,13 @@ export class AuthService {
 
   constructor( private auth: Auth ) { }
 
-  login(usuario: Usuario){
-    return from(signInWithEmailAndPassword(this.auth, usuario.email, usuario.senha));
-  }
-
-  logout(){
-    return from(this.auth.signOut());
+  fazerLogin(usuario: Usuario){
+    if(usuario.email != '' && usuario.senha != ''){
+      api.post(`/login?user=${usuario.email}&password=${CryptoJS.MD5(usuario.senha).toString()}`);
+      this.usuarioAutenticado = true;
+      // this.router.navigate(['/']);
+    } else{
+      this.usuarioAutenticado = false
+    }
   }
 }

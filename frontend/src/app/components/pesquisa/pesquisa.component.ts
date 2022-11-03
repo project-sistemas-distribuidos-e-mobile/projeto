@@ -33,12 +33,12 @@ export class PesquisaComponent implements OnInit {
     .catch(error => console.log(error));
   }
 
-  abrirJogo(id: number){
-    api.post(`/titulo/jogo/${id}`, id)
-    .then(response => {
-    })
-    .catch(error => console.log(error));
-  }
+  // abrirJogo(id: number){
+  //   api.post(`/titulo/jogo/${id}`, id)
+  //   .then(response => {
+  //   })
+  //   .catch(error => console.log(error));
+  // }
 
 
   ngOnInit(): void {
@@ -56,10 +56,10 @@ export class PesquisaComponent implements OnInit {
       this.resultados_serie = response.data;
     }).catch(error => console.log(error));
 
-    api.get('/res/jogo')
-    .then(response => {
-      this.resultados_jogo = response.data;
-    }).catch(error => console.log(error));
+    // api.get('/res/jogo')
+    // .then(response => {
+    //   this.resultados_jogo = response.data;
+    // }).catch(error => console.log(error));
 
     
   }
