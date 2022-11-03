@@ -18,7 +18,7 @@ routes.post('/home/:page', (req, res) => {
 routes.get('/filmes', FilmesController.buscarFilmes);
 routes.get('/series', SeriesController.buscarSeries);
 routes.get('/animacoes', AnimacoesController.buscarAnimacoes);
-// routes.get('/jogos', JogosControllers.buscarJogos);
+routes.get('/jogos', JogosControllers.buscarJogos);
 
 //Rotas para pequisa por nome
 routes.post('/pesquisa/:nome', (req, res) => {
@@ -28,7 +28,7 @@ routes.post('/pesquisa/:nome', (req, res) => {
 });
 routes.get('/res/filme', FilmesController.buscarFilmePorNome);
 routes.get('/res/serie', SeriesController.buscarSeriePorNome);
-// routes.get('/res/jogo', JogosControllers.buscarJogoPorNome);
+routes.get('/res/jogo', JogosControllers.buscarJogoPorNome);
 
 //Rotas para conteudo especifico
 routes.post('/titulo/:categoria/:id', (req, res) => {
@@ -39,6 +39,6 @@ routes.post('/titulo/:categoria/:id', (req, res) => {
 routes.get('/filme', FilmesController.buscarFilmePorId);
 routes.get('/serie', SeriesController.buscarSeriePorId);
 routes.get('/animacao', AnimacoesController.buscarAnimacaoPorId);
-// routes.get('/jogo', JogosControllers.buscarJogoPorId);
+routes.get('/jogo', JogosControllers.buscarJogoPorId);
 
 export {routes, busca, id, categoria, pagina};

@@ -12,10 +12,10 @@ export class GamesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // api.get('/jogos')
-    // .then(response => {
-    //   this.jogos = response.data;
-    // }).catch(error => console.log(error));  
+    api.get('/jogos')
+    .then(response => {
+      this.jogos = response.data;
+    }).catch(error => console.log(error));  
   }
 
 

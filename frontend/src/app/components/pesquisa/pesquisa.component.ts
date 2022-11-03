@@ -33,12 +33,12 @@ export class PesquisaComponent implements OnInit {
     .catch(error => console.log(error));
   }
 
-  // abrirJogo(id: number){
-  //   api.post(`/titulo/jogo/${id}`, id)
-  //   .then(response => {
-  //   })
-  //   .catch(error => console.log(error));
-  // }
+  abrirJogo(id: number){
+    api.post(`/titulo/jogo/${id}`, id)
+    .then(response => {
+    })
+    .catch(error => console.log(error));
+  }
 
 
   ngOnInit(): void {

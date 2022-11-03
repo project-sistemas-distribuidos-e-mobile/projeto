@@ -10,5 +10,3 @@ export const clientID: string = 'vdzkbkj1v7140s0hjydhpw09dsocb5';
 //token para requisições IGDB
 //atualizar o token, ele expira
 export const token: string = '2covubxvlmu3935nwhuenhs3lbc7m4';
-
-export const db: string = `https://proj-sis-dist-default-rtdb.firebaseio.com/users.json`;
