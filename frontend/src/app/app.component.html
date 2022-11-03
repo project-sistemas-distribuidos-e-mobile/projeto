@@ -1,4 +1,45 @@
-<app-navbar></app-navbar>
-<app-search-bar></app-search-bar>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Site</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="navbar-nav" id="links">
+
+            <a class="nav-link px-4 fw-semibold dropdown" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle fs-4 text-light nav-link"></i>
+              <ul class="dropdown-menu">
+                <li class="text-center"><a class="dropdown-item" type="button">Cadastrar-se<i class="bi bi-box-arrow-in-down"></i></a></li>
+
+                <li><hr class="dropdown-divider"></li>
+                
+                <div *ngIf="authService.usuarioAtual | async as user; else loginButton">
+                    <li class="text-center">
+                        <a class="dropdown-item" type="button" (click)="logout()">Logout<i class="bi bi-box-arrow-in-left"></i></a>
+                    </li>
+                </div>
+               
+                <ng-template #loginButton>
+                    <li class="text-center">
+                        <a class="dropdown-item" routerLink="login">Login<i class="bi bi-box-arrow-in-right"></i></a>
+                    </li>
+                </ng-template>
+              </ul>
+            </a>    
+
+            <a class="nav-link fw-semibold text-light my-auto" role="button">Favoritos</a>
+
+        </div>
+      </div>
+    </div>
+</nav>
+<div class="input-group mb-3" id="search">
+    <input #input type="text" class="form-control" placeholder="Ex: Homem-Aranha De Volta ao Lar" 
+    (blur)="procurar(input.value)">
+    <button class="btn btn-primary" type="button" routerLink="/resultados/{{input.value}}" (click)="input.value = ''">
+        <i class="bi bi-search"></i>
+    </button>
+</div>
 <app-footer></app-footer>
 <router-outlet></router-outlet>

@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FilmesComponent } from './components/filmes/filmes.component';
 import { SeriesComponent } from './components/series/series.component';
 import { AnimationsComponent } from './components/animacoes/animations.component';
@@ -18,13 +16,15 @@ import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.compon
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './components/login/auth.service';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     CarouselComponent,
-    SearchBarComponent,
     FilmesComponent,
     SeriesComponent,
     AnimationsComponent,
@@ -39,7 +39,10 @@ import { AuthService } from './components/login/auth.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    HotToastModule.forRoot(),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

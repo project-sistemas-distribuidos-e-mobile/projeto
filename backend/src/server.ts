@@ -1,6 +1,5 @@
 import expres from 'express';
 import {routes} from './routes';
-import { login } from './login';
 import cors from 'cors';
 
 //inicializa o serviço de servidor do express
@@ -13,7 +12,6 @@ app.use(cors({
 
 //utilização das rotas criadas no arquivo de rotas
 app.use(routes);
-app.use(login);
 
 //indicação da porta de escuta do servidor
 app.listen(5000, () => {

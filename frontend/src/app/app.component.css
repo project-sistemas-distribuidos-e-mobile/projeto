@@ -1,0 +1,37 @@
+/*ESTILO DO  NAVBAR*/
+div#links{
+    margin-left: auto;
+    margin-right: 50px;
+}
+div#navbarNavDropdown a:hover{
+    border-radius: 5px;
+}
+a{
+    padding: 0px;
+    cursor: pointer;
+}
+/*ESTILO DO SEARCH BAR*/
+div#search{
+    position: absolute;
+    top: 70px;
+    width: 75vw;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 2;
+}
+
+input{
+    background-color: rgba(0, 0, 0, 0.274);
+    border: none;
+    color: white;
+}
+
+::placeholder{
+    color: white;
+}
+
+input:focus{
+    background-color: rgba(0, 0, 0, 0.247);
+    box-shadow: none;
+    color: white;
+}

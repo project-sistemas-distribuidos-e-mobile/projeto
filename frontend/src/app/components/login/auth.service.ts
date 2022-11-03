@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import * as CryptoJS from 'crypto-js';
+import { Auth, authState } from '@angular/fire/auth';
+import { signInWithEmailAndPassword } from '@firebase/auth';
+import { from } from 'rxjs';
 import { Usuario } from 'src/models/Usuario';
-import api from 'src/services/api';
 
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private usuarioAutenticado = false;
 
-  constructor(private router: Router) { }
+  usuarioAtual = authState(this.auth);
 
-  fazerLogin(usuario: Usuario){
-    if(usuario.email != '' && usuario.senha != ''){
-      api.post(`/login?user=${usuario.email}&password=${CryptoJS.MD5(usuario.senha).toString()}`);
-      this.usuarioAutenticado = true;
-      // this.router.navigate(['/']);
-    } else{
-      this.usuarioAutenticado = false
-    }
+  constructor( private auth: Auth ) { }
+
+  login(usuario: Usuario){
+    return from(signInWithEmailAndPassword(this.auth, usuario.email, usuario.senha));
+  }
+
+  logout(){
+    return from(this.auth.signOut());
   }
 }
