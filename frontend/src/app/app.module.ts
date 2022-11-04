@@ -14,12 +14,14 @@ import { HomeComponent } from './components/home/home.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.component';
 import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './components/login/auth.service';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,13 @@ import { HotToastModule } from '@ngneat/hot-toast';
     HomeComponent,
     TituloComponent,
     TituloJogoComponent,
-    LoginComponent
+    LoginComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

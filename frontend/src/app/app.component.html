@@ -10,11 +10,12 @@
             <a class="nav-link px-4 fw-semibold dropdown" data-bs-toggle="dropdown">
               <i class="bi bi-person-circle fs-4 text-light nav-link"></i>
               <ul class="dropdown-menu">
-                <li class="text-center"><a class="dropdown-item" type="button">Cadastrar-se<i class="bi bi-box-arrow-in-down"></i></a></li>
+                <div *ngIf="authService.usuarioAtual | async as user; else loginButton"><li class="text-center"><a class="dropdown-item">{{user.displayName}} <i class="bi bi-person-circle"></i></a></li></div>
+                
 
                 <li><hr class="dropdown-divider"></li>
                 
-                <div *ngIf="authService.usuarioAtual | async as user; else loginButton">
+                <div *ngIf="authService.usuarioAtual | async as user; else cadastroButton">
                     <li class="text-center">
                         <a class="dropdown-item" type="button" (click)="logout()">Logout<i class="bi bi-box-arrow-in-left"></i></a>
                     </li>
@@ -23,6 +24,12 @@
                 <ng-template #loginButton>
                     <li class="text-center">
                         <a class="dropdown-item" routerLink="login">Login<i class="bi bi-box-arrow-in-right"></i></a>
+                    </li>
+                </ng-template>
+
+                <ng-template #cadastroButton>
+                    <li class="text-center">
+                        <a class="dropdown-item" routerLink="cadastro">Cadastro<i class="bi bi-box-arrow-in-down"></i></a>
                     </li>
                 </ng-template>
               </ul>
