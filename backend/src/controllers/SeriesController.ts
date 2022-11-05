@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import SerieService from "../services/SerieService";
+import BuscaService from "../services/BuscaService";
 import { Data } from "../models/Data";
 import { Titulo } from "../models/Titulo";
 
@@ -59,8 +60,8 @@ export default{
     //Retorna 1 seriado buscado pelo ID conforme o Modelo
     async buscarSeriePorId(req: Request, res: Response){
         const serie = new Titulo();
-        const fetch = new SerieService();
-        const response = await fetch.getSeriePorID;
+        const fetch = new BuscaService();
+        const response = await fetch.get;
         serie.nome = response.name;
         serie.descricao = response.overview;
         serie.data_lancamento = response.first_air_date.split('-').reverse().join('-');

@@ -27,33 +27,5 @@ export default{
             array_de_animacoes.push(animacao);
         });
         return res.json(array_de_animacoes);
-    },
-
-    //Retorna uma animação buscada pelo ID conforme o Modelo
-    async buscarAnimacaoPorId(req: Request, res: Response){
-        const animacao = new Titulo();
-        const fetch = new AnimacaoService();
-        const response = await fetch.getAnimacaoPorID;
-        animacao.nome = response.name;
-        animacao.descricao = response.overview;
-        animacao.data_lancamento = response.first_air_date.split('-').reverse().join('-');
-        animacao.idioma = response.original_language.toUpperCase();
-        animacao.nota = response.vote_average.toFixed(2);
-        if(response.genres.length > 1){
-            response.genres.forEach(genre =>{
-                animacao.generos.push(genre['name']);
-            })
-        }else{
-            animacao.generos.push(response.genres);
-        }
-        if(response.production_companies.length >= 1){
-            response.production_companies.forEach(produtora =>{
-                animacao.produtoras.push(produtora['name']);
-            })
-        }else{
-            animacao.produtoras.push(response.production_companies);
-        }
-        animacao.poster += response.poster_path;
-        return res.json(animacao);
     }
 }

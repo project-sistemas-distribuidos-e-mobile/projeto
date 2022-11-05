@@ -10,7 +10,7 @@ import api from 'src/services/api';
 })
 
 export class AppComponent{
-  pagina: number = 2;
+  pagina: number = 1;
   constructor(public authService: AuthService, private router: Router){}
 
   logout(){
@@ -18,12 +18,14 @@ export class AppComponent{
       this.router.navigate(['login']);
     })
   }
+
   public home(){
     api.post(`/home/${this.pagina}`, this.pagina++)
     .then(response => {
     })
     .catch(error => console.log(error));
   }
+
   public procurar(nome: string){
     api.post(`/pesquisa/${nome}`, nome)
     .then(response => {

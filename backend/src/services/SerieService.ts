@@ -1,8 +1,7 @@
 import axios from "axios";
 import { key } from "../keys";
-import { id } from "../routes";
 import {busca} from "../routes";
-import {pagina} from "../routes"
+import {pagina} from "../routes";
 
 class SerieService{
     //Busca os seriados/animações que estão em alta na semana    
@@ -20,13 +19,6 @@ class SerieService{
         return data;
     })
     .catch(error => console.log(error));
-
-    //Busca um seriado a partir do seu ID
-    getSeriePorID = axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${key}&language=pt-BR`)
-    .then(response => {
-        return response.data;
-    })
-    .catch(error => console.log(error));  
 
 }
 export default SerieService;

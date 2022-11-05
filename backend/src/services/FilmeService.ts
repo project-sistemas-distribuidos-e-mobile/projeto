@@ -2,7 +2,7 @@ import axios from "axios";
 import { key } from "../keys";
 import { id } from "../routes";
 import {busca} from "../routes";
-import {pagina} from "../routes"
+import {pagina} from "../routes";
 
 class FilmeService{
     //Busca os filmes que estão em alta na semana
@@ -20,12 +20,5 @@ class FilmeService{
         return data;
     })
     .catch(error => console.log(error))
-
-    //Busca um filme a partir do seu ID
-    getFilmePorID = axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=pt-BR`)
-    .then(response => {
-        return response.data;
-    })
-    .catch(error => console.log(error));
 }
 export default FilmeService;

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import FilmeService from "../services/FilmeService";
+import BuscaService from "../services/BuscaService";
 import { Data } from "../models/Data";
 import { Titulo } from "../models/Titulo";
 
@@ -61,8 +62,8 @@ export default{
     //Retorna 1 filme buscado pelo ID conforme o Modelo
     async buscarFilmePorId(req: Request, res: Response){
         const filme = new Titulo();
-        const fetch = new FilmeService();
-        const response = await fetch.getFilmePorID;
+        const fetch = new BuscaService();
+        const response = await fetch.get;
         filme.nome = response.title;
         filme.descricao = response.overview;
         filme.data_lancamento = response.release_date.split('-').reverse().join('-');
