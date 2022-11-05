@@ -3,7 +3,7 @@ import api from '../../../services/api';
 import { Titulo } from 'src/models/Titulo';
 import { Router } from '@angular/router';
 import { AuthService } from '../login/auth.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FavService } from './fav.service';
 
 @Component({
   selector: 'app-titulo',
@@ -15,12 +15,15 @@ export class TituloComponent implements OnInit {
   filme: Titulo = new Titulo();
   usuario$ = this.authservice.usuarioAtual$;
 
-
-  favoritar(id: number){
+  favoritar(userid: any, id: number){
+    this.favService.post(userid, id);
     this.favorito = !this.favorito;
-    console.log(id);
   }
-  constructor(private router: Router, public authservice: AuthService) { }
+  
+  remover(){
+    this.favorito = !this.favorito;
+  }
+  constructor(private router: Router, public authservice: AuthService, private favService: FavService) { }
 
   ngOnInit(): void {
     const dividi = this.router.url.replace("/titulo/", "").split('/');

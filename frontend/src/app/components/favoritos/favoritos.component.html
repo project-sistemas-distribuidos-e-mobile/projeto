@@ -1,19 +1,5 @@
 <div *ngIf="usuario$ | async as usuario" id="fav">
     <h1>Favoritos</h1>
-    <h2>{{usuario.displayName}}</h2>
-    <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero eligendi necessitatibus, sint labore repellendus? Sunt ipsam, nesciunt corrupti voluptatibus rerum debitis accusamus ad earum. Sint eaque earum tempora, possimus assumenda debitis pariatur facilis recusandae, quos sit eius delectus placeat suscipit ex excepturi repudiandae consequuntur officia alias similique explicabo repellat.
-    </div>
-    <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero eligendi necessitatibus, sint labore repellendus? Sunt ipsam, nesciunt corrupti voluptatibus rerum debitis accusamus ad earum. Sint eaque earum tempora, possimus assumenda debitis pariatur facilis recusandae, quos sit eius delectus placeat suscipit ex excepturi repudiandae consequuntur officia alias similique explicabo repellat.
-    </div>
-    <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero eligendi necessitatibus, sint labore repellendus? Sunt ipsam, nesciunt corrupti voluptatibus rerum debitis accusamus ad earum. Sint eaque earum tempora, possimus assumenda debitis pariatur facilis recusandae, quos sit eius delectus placeat suscipit ex excepturi repudiandae consequuntur officia alias similique explicabo repellat.
-    </div>
-    <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero eligendi necessitatibus, sint labore repellendus? Sunt ipsam, nesciunt corrupti voluptatibus rerum debitis accusamus ad earum. Sint eaque earum tempora, possimus assumenda debitis pariatur facilis recusandae, quos sit eius delectus placeat suscipit ex excepturi repudiandae consequuntur officia alias similique explicabo repellat.
-    </div>
-    <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero eligendi necessitatibus, sint labore repellendus? Sunt ipsam, nesciunt corrupti voluptatibus rerum debitis accusamus ad earum. Sint eaque earum tempora, possimus assumenda debitis pariatur facilis recusandae, quos sit eius delectus placeat suscipit ex excepturi repudiandae consequuntur officia alias similique explicabo repellat.
-    </div>
+    <h2>{{usuario.email}}</h2>
+    <button type="button" (click)="abrirFavoritos(usuario.uid)">Abrir Favoritos</button>
 </div>

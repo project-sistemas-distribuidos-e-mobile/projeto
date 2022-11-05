@@ -13,12 +13,48 @@
         <p>{{filme.descricao}}</p>
         <div class="mb-2">  
             <span>{{filme.nota}} <i class="bi bi-star-fill text-warning"></i></span>
-            <span *ngIf="favorito;else clique">
-                Favoritar <i class="text-danger bi bi-heart-fill" (click)="favoritar(filme.id)"></i>
+
+            <span *ngIf="usuario$ | async as user; else naoLogin">
+                <span *ngIf="favorito;else clique">
+                    Favoritar <i class="text-danger bi bi-heart-fill" (click)="remover()"></i>
+                </span>
+
+                <ng-template #clique>
+                    <button type="button">Favoritar <i class="text-danger bi bi-heart" (click)="favoritar(user.uid, filme.id)"></i></button>
+                </ng-template>
+
             </span>
-            <ng-template #clique>
-                <button type="button">Favoritar <i class="text-danger bi bi-heart" (click)="favoritar(filme.id)"></i></button>
-            </ng-template>
+            <ng-template #naoLogin>
+                <!-- Button trigger modal -->
+                <button type="button" data-bs-toggle="modal" data-bs-target="#avisoModal">
+                    Favoritar <i class="text-danger bi bi-heart"></i>
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="avisoModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Aviso</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-center">
+                                Faça o cadastro para habilitar os Favoritos ❤️
+                                </div>
+                                <div class="modal-footer d-flex justify-content-around">
+                                <button type="button" class="btn btn-secondary bg-primary" data-bs-dismiss="modal">
+                                    Fechar
+                                </button>
+                                <button type="button" class="btn btn-secondary bg-primary" data-bs-dismiss="modal">
+                                    <a routerLink="/cadastro" class="text-decoration-none text-white">Cadastro</a>
+                                </button>
+                                <button type="button" class="btn btn-secondary bg-primary" data-bs-dismiss="modal">
+                                    <a routerLink="/login" class="text-decoration-none text-white">Login</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>   
         </div> 
         <h6>Produtoras</h6>
         <ul>
