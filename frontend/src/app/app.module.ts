@@ -22,6 +22,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     TituloComponent,
     TituloJogoComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    FavoritosComponent
   ],
   imports: [
     BrowserModule,

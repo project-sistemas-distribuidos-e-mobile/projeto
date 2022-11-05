@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Auth, authState, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { from, switchMap } from 'rxjs';
-import { Usuario } from 'src/models/Usuario';
 
  
 @Injectable({
@@ -10,18 +9,17 @@ import { Usuario } from 'src/models/Usuario';
 })
 export class AuthService {
 
-  usuarioAtual = authState(this.auth);
+  usuarioAtual$ = authState(this.auth);
 
   constructor( private auth: Auth ) { }
 
-  cadastro(usuario: Usuario){
-    return from(createUserWithEmailAndPassword(this.auth, usuario.email, usuario.senha)).pipe(
-      switchMap(({user}) => updateProfile(user, {displayName: usuario.nome}))
-    );
+  cadastro(nome: string, email: string, senha: string){
+    return from(createUserWithEmailAndPassword(this.auth, email, senha))
+    .pipe(switchMap(({ user }) => updateProfile(user, {displayName: nome})));
   }
 
-  login(usuario: Usuario){
-    return from(signInWithEmailAndPassword(this.auth, usuario.email, usuario.senha));
+  login(email: string, senha: string){
+    return from(signInWithEmailAndPassword(this.auth, email, senha));
   }
 
   logout(){

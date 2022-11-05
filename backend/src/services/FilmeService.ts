@@ -1,6 +1,5 @@
 import axios from "axios";
 import { key } from "../keys";
-import { id } from "../routes";
 import {busca} from "../routes";
 import {pagina} from "../routes";
 

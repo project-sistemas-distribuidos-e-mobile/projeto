@@ -6,12 +6,16 @@ import { TituloComponent } from './components/titulo/titulo.component';
 import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.component';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
+const redirecionarParaLogin = () => redirectUnauthorizedTo(['/login']);
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cadastro', component: CadastroComponent},
+  {path: 'favoritos', component: FavoritosComponent, ...canActivate(redirecionarParaLogin)},
   {path: 'resultados/:nome', component: PesquisaComponent},
   {path: 'titulo/:tipo/:id', component: TituloComponent}, 
   {path: 'titulo/:id', component: TituloJogoComponent}, 

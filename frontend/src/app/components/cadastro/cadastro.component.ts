@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
-import { Usuario } from 'src/models/Usuario';
 import { AuthService } from '../login/auth.service';
 
 export function senhasCoincidemValidador(): ValidatorFn{
@@ -32,12 +31,10 @@ export class CadastroComponent implements OnInit {
     confirmarSenha: new FormControl('', Validators.required, )
   }, {validators: senhasCoincidemValidador() })
 
-  newUsuario: Usuario = new Usuario();
-
   constructor( 
     private authservice: AuthService, 
     private router: Router,
-    private toast: HotToastService
+    private toast: HotToastService,
     ) { }
 
   ngOnInit(): void {
@@ -81,21 +78,22 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastro(){
-    if(!this.cadastroForm.valid){
+    const {nome, email, senha} = this.cadastroForm.value;
+    if(!this.cadastroForm.valid || !nome || !senha || !email){
       this.toast.error("Por favor, preencha os campos antes de continuar.");
       return;
     }
-    this.newUsuario.nome = this.cadastroForm.value['nome'];
-    this.newUsuario.email = this.cadastroForm.value['email'];
-    this.newUsuario.senha = this.cadastroForm.value['senha'];
-    this.authservice.cadastro(this.newUsuario).pipe(
-      this.toast.observe({
-        success: 'Parabéns, cadastro realizado com sucesso!',
-        loading: 'Registrando...',
-        error: ({message}) => `${message}`
-      })
-    ).subscribe(() => {
-      this.router.navigate(['/']);
-    })
-  }
+    this.authservice
+      .cadastro(nome, email, senha)
+      .pipe(
+        this.toast.observe({
+          success: 'Parabéns, cadastro realizado com sucesso!',
+          loading: 'Registrando...',
+          error: ({message}) => `${message}`
+        })
+      )
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      });
+    }
 }

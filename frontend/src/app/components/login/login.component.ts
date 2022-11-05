@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
-import { Usuario } from 'src/models/Usuario';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { AuthService } from './auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuario: Usuario = new Usuario;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     senha: new FormControl('', Validators.required),
@@ -51,9 +49,8 @@ export class LoginComponent implements OnInit {
       this.toast.error("Por favor, preencha os campos antes de continuar.");
       return;
     }
-    this.usuario.email = this.loginForm.value['email'];
-    this.usuario.senha = this.loginForm.value['senha'];
-    this.authservice.login(this.usuario).pipe(
+    const {email, senha} = this.loginForm.value;
+    this.authservice.login(email, senha).pipe(
       this.toast.observe({
         success: 'Logado com sucesso!',
         loading: 'Fazendo login...',

@@ -11,9 +11,14 @@
             <li *ngFor="let genero of filme.generos"><small class="fw-bold">{{genero}}</small></li>
         </ul>
         <p>{{filme.descricao}}</p>
-        <div class="mb-2">
-            <a class="mx-2 text-decoration-none text-black"><span>{{filme.nota}}<i class="bi bi-star-fill text-warning"></i></span></a>
-            <a class="mx-2 text-decoration-none text-black"><span>Favoritar <i class="bi bi-heart text-danger"></i></span></a>
+        <div class="mb-2">  
+            <span>{{filme.nota}} <i class="bi bi-star-fill text-warning"></i></span>
+            <span *ngIf="favorito;else clique">
+                Favoritar <i class="text-danger bi bi-heart-fill" (click)="favoritar(filme.id)"></i>
+            </span>
+            <ng-template #clique>
+                <button type="button">Favoritar <i class="text-danger bi bi-heart" (click)="favoritar(filme.id)"></i></button>
+            </ng-template>
         </div> 
         <h6>Produtoras</h6>
         <ul>

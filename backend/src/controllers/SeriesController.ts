@@ -65,6 +65,7 @@ export default{
         const fetch = new BuscaService();
         const response = await fetch.get;
         try{
+            serie.id = response.id;
             serie.nome = response.name;
             serie.descricao = response.overview;
             serie.data_lancamento = response.first_air_date.split('-').reverse().join('-');

@@ -6,7 +6,7 @@ import {categoria} from "../routes";
 class BuscaService{
     get = axios.get(`https://api.themoviedb.org/3/${categoria}/${id}?api_key=${key}&language=pt-BR`)
     .then(response => {
-        return response.data;
+        return response.data;    
     })
     .catch(error => console.log(error));
 }

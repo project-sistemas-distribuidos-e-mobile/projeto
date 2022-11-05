@@ -10,9 +10,11 @@ import api from 'src/services/api';
 })
 
 export class AppComponent{
+  usuario$ = this.authService.usuarioAtual$;
+  
   pagina: number = 1;
   constructor(public authService: AuthService, private router: Router){}
-
+  
   logout(){
     this.authService.logout().subscribe(()=>{
       this.router.navigate(['login']);

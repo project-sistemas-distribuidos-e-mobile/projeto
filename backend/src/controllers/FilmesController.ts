@@ -64,6 +64,7 @@ export default{
         const filme = new Titulo();
         const fetch = new BuscaService();
         const response = await fetch.get;
+        filme.id = response.id;
         filme.nome = response.title;
         filme.descricao = response.overview;
         filme.data_lancamento = response.release_date.split('-').reverse().join('-');

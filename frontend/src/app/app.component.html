@@ -10,12 +10,12 @@
             <a class="nav-link px-4 fw-semibold dropdown" data-bs-toggle="dropdown">
               <i class="bi bi-person-circle fs-4 text-light nav-link"></i>
               <ul class="dropdown-menu">
-                <div *ngIf="authService.usuarioAtual | async as user; else loginButton"><li class="text-center"><a class="dropdown-item">{{user.displayName}} <i class="bi bi-person-circle"></i></a></li></div>
+                <div *ngIf="usuario$ | async as user; else loginButton"><li class="text-center"><a class="dropdown-item">{{user.displayName}} <i class="bi bi-person-circle"></i></a></li></div>
                 
 
                 <li><hr class="dropdown-divider"></li>
                 
-                <div *ngIf="authService.usuarioAtual | async as user; else cadastroButton">
+                <div *ngIf="authService.usuarioAtual$ | async as user; else cadastroButton">
                     <li class="text-center">
                         <a class="dropdown-item" type="button" (click)="logout()">Logout<i class="bi bi-box-arrow-in-left"></i></a>
                     </li>
@@ -35,7 +35,7 @@
               </ul>
             </a>    
 
-            <a class="nav-link fw-semibold text-light my-auto" role="button">Favoritos</a>
+            <a class="nav-link fw-semibold text-light my-auto" routerLink="/favoritos">Favoritos</a>
 
         </div>
       </div>

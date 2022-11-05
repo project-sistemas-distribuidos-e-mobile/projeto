@@ -1,4 +1,5 @@
 export class Titulo{
+    id: number = 0;
     nome: string = '';
     descricao: string = '';
     data_lancamento: string = '';
