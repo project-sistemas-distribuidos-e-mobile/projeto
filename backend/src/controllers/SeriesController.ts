@@ -35,26 +35,28 @@ export default{
         let resultado_pesquisa: {}[] = [];
         const fetch = new SerieService();
         const response = await fetch.getSeriePorName;
-        for(let i = 0; i < response.length; i++){
-            const data = new Data();    
-            data.id = response[i].id;
-            data.nome = response[i].name;
-            if(response[i].overview == undefined || response[i].overview == ''){
-                data.descricao = "Descrição não encontrada.";
-            }else{
-                data.descricao = response[i].overview;
-            }
-            if(response[i].poster_path != null ){
-                data.imagem += response[i].poster_path;
-            } else{
-                data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
-            resultado_pesquisa.push(data);
-            if(i > 5){
-                break;
+        try{
+            for(let i = 0; i < 10; i++){
+                const data = new Data();    
+                data.id = response[i].id;
+                data.nome = response[i].name;
+                if(response[i].overview == undefined || response[i].overview == ''){
+                    data.descricao = "Descrição não encontrada.";
+                }else{
+                    data.descricao = response[i].overview;
+                }
+                if(response[i].poster_path != null ){
+                    data.imagem += response[i].poster_path;
+                } else{
+                    data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+                }
+                resultado_pesquisa.push(data);
             }
         }
-        return res.json(resultado_pesquisa); 
+        catch (error: any){
+            console.log(error);
+        }
+        return res.json(resultado_pesquisa);    
     },
 
     //Retorna 1 seriado buscado pelo ID conforme o Modelo
@@ -62,26 +64,31 @@ export default{
         const serie = new Titulo();
         const fetch = new BuscaService();
         const response = await fetch.get;
-        serie.nome = response.name;
-        serie.descricao = response.overview;
-        serie.data_lancamento = response.first_air_date.split('-').reverse().join('-');
-        serie.idioma = response.original_language.toUpperCase();
-        serie.nota = response.vote_average.toFixed(2);
-        if(response.genres.length > 1){
-            response.genres.forEach(genre =>{
-                serie.generos.push(genre['name']);
-            })
-        }else{
-            serie.generos.push(response.genres);
+        try{
+            serie.nome = response.name;
+            serie.descricao = response.overview;
+            serie.data_lancamento = response.first_air_date.split('-').reverse().join('-');
+            serie.idioma = response.original_language.toUpperCase();
+            serie.nota = response.vote_average.toFixed(2);
+            if(response.genres.length >= 1){
+                response.genres.forEach(genre =>{
+                    serie.generos.push(genre['name']);
+                })
+            }else{
+                serie.generos.push(response.genres);
+            }
+            if(response.production_companies.length >= 1){
+                response.production_companies.forEach(produtora =>{
+                    serie.produtoras.push(produtora['name']);
+                })
+            }else{
+                serie.produtoras.push(response.production_companies);
+            }
+            serie.poster += response.poster_path;
         }
-        if(response.production_companies.length >= 1){
-            response.production_companies.forEach(produtora =>{
-                serie.produtoras.push(produtora['name']);
-            })
-        }else{
-            serie.produtoras.push(response.production_companies);
+        catch (error:any){
+            console.log(error);
         }
-        serie.poster += response.poster_path;
         return res.json(serie);
     }
 

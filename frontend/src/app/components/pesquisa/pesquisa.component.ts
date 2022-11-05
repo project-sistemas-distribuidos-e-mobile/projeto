@@ -18,7 +18,7 @@ export class PesquisaComponent implements OnInit {
   constructor(private router: Router) { }
   
   abrirFilme(id: number){
-    api.post(`/titulo/filme/${id}`, id)
+    api.post(`/titulo/movie/${id}`, id)
     .then(response => {
       console.log(response);
     })
@@ -26,7 +26,7 @@ export class PesquisaComponent implements OnInit {
   }
   
   abrirSerie(id: number){
-    api.post(`/titulo/serie/${id}`, id)
+    api.post(`/titulo/tv/${id}`, id)
     .then(response => {
       console.log(response);
     })
@@ -56,10 +56,10 @@ export class PesquisaComponent implements OnInit {
       this.resultados_serie = response.data;
     }).catch(error => console.log(error));
 
-    // api.get('/res/jogo')
-    // .then(response => {
-    //   this.resultados_jogo = response.data;
-    // }).catch(error => console.log(error));
+    api.get('/res/jogo')
+    .then(response => {
+      this.resultados_jogo = response.data;
+    }).catch(error => console.log(error));
 
     
   }

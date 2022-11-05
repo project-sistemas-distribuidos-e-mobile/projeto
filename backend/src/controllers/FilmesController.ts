@@ -36,27 +36,27 @@ export default{
         const fetch = new FilmeService();
         const response = await fetch.getFilmePorName;
         try{
-        for(let i = 0; i<= 5; i++){
-            const data = new Data();
-            data.id = response[i].id;
-            data.nome = response[i].title;
-            if(response[i].overview == undefined || response[i].overview == ''){
-                data.descricao = "Descrição não encontrada.";
-            }else{
-                data.descricao = response[i].overview;
+            for(let i = 0; i<= 10; i++){
+                const data = new Data();
+                data.id = response[i].id;
+                data.nome = response[i].title;
+                if(response[i].overview == undefined || response[i].overview == ''){
+                    data.descricao = "Descrição não encontrada.";
+                }else{
+                    data.descricao = response[i].overview;
+                }
+                if(response[i].poster_path != null ){
+                    data.imagem += response[i].poster_path;
+                } else{
+                    data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+                }
+                resultado_pesquisa.push(data); 
             }
-            if(response[i].poster_path != null ){
-                data.imagem += response[i].poster_path;
-            } else{
-                data.imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-            }
-            resultado_pesquisa.push(data); 
         }
-    }
-    catch (error: any){
-        console.log(error);
-    }
-        return res.json(resultado_pesquisa);
+        catch (error: any){
+            console.log(error);
+        }
+            return res.json(resultado_pesquisa);
     },
 
     //Retorna 1 filme buscado pelo ID conforme o Modelo

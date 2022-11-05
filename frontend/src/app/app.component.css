@@ -10,9 +10,6 @@ a{
     padding: 0px;
     cursor: pointer;
 }
-a > i{
-    padding: 0;
-}
 /*ESTILO DO SEARCH BAR*/
 div#search{
     position: absolute;

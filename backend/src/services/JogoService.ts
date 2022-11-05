@@ -32,7 +32,7 @@ class JogoService{
             'Client-ID': clientID,
             'Authorization': `Bearer ${token}`,
         },
-        data: `fields id, name, first_release_date, summary, language_supports.language.name, rating, genres.name, cover.image_id, artworks.image_id, involved_companies.company.name, platforms.name; search "${busca}"; limit 5;`
+        data: `fields id, name, first_release_date, summary, language_supports.language.name, rating, genres.name, cover.image_id, artworks.image_id, involved_companies.company.name, platforms.name; search "${busca}"; limit 10;`
         })
         .then((res) => {
             const data = res.data;

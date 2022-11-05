@@ -13,11 +13,11 @@ export class TituloJogoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // api.get('/jogo')
-    //   .then(response => {
-    //     this.jogo = response.data;
-    //     console.log('this.jogo', this.jogo);
-    //   }).catch(error => console.log(error));
+    api.get('/jogo')
+      .then(response => {
+        this.jogo = response.data;
+        console.log('this.jogo', this.jogo);
+      }).catch(error => console.log(error));
   }
 
 }
