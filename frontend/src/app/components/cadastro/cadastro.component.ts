@@ -59,9 +59,30 @@ export class CadastroComponent implements OnInit {
     return this.cadastroForm.get('senha');
   }
 
+  validaNome(){
+    if(!this.cadastroForm.controls['email'].valid){
+      this.toast.error('Por favor, insira um nome.');
+    }
+  }
+  validaEmail(){
+    if(!this.cadastroForm.controls['email'].valid){
+      this.toast.error('Por favor, insira um e-mail válido.');
+    }
+  }
+  validaSenha(){
+    if(!this.cadastroForm.controls['senha'].valid){
+      this.toast.error('Por favor, insira uma senha.');
+    }
+  }
+  validaConfirmaSenha(){
+    if(!this.cadastroForm.controls['confirmarSenha'].valid){
+      this.toast.error('Ops! As senhas informadas não coincidem.');
+    }
+  }
+
   cadastro(){
-    console.log(this.cadastroForm);
     if(!this.cadastroForm.valid){
+      this.toast.error("Por favor, preencha os campos antes de continuar.");
       return;
     }
     this.newUsuario.nome = this.cadastroForm.value['nome'];

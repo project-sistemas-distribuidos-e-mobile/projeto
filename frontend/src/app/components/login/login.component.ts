@@ -11,16 +11,17 @@ import { AuthService } from './auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  usuario: Usuario = new Usuario;
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     senha: new FormControl('', Validators.required),
   });
-  usuario: Usuario = new Usuario;
-
+  
+  
   constructor(
     private authservice: AuthService, 
     private router: Router,
-    private toast: HotToastService
+    private toast: HotToastService,
     ) { }
 
   ngOnInit(): void {
@@ -34,8 +35,20 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('senha');
   }
 
+  validaEmail(){
+    if(!this.loginForm.controls['email'].valid){
+      this.toast.error('Por favor, insira um e-mail válido.');
+    }
+  }
+  validaSenha(){
+    if(!this.loginForm.controls['senha'].valid){
+      this.toast.error('Por favor, insira uma senha.');
+    }
+  }
+  
   login(){
     if(!this.loginForm.valid){
+      this.toast.error("Por favor, preencha os campos antes de continuar.");
       return;
     }
     this.usuario.email = this.loginForm.value['email'];
@@ -51,5 +64,10 @@ export class LoginComponent implements OnInit {
     })
     
   }
+
+  getErrorMessage() {
+    console.log(this.loginForm.controls['email']);
+}
   
 }
+
