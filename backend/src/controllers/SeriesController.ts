@@ -75,17 +75,14 @@ export default{
                 response.genres.forEach(genre =>{
                     serie.generos.push(genre['name']);
                 })
-            }else{
-                serie.generos.push(response.genres);
             }
             if(response.production_companies.length >= 1){
                 response.production_companies.forEach(produtora =>{
                     serie.produtoras.push(produtora['name']);
                 })
-            }else{
-                serie.produtoras.push(response.production_companies);
             }
             serie.poster += response.poster_path;
+            serie.homepage = response.homepage;
         }
         catch (error:any){
             console.log(error);

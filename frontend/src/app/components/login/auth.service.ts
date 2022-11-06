@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
-import { signInWithEmailAndPassword } from '@firebase/auth';
+import { Auth, authState, createUserWithEmailAndPassword, getAuth, updateProfile } from '@angular/fire/auth';
+import { signInWithEmailAndPassword} from '@firebase/auth';
 import { from, switchMap } from 'rxjs';
 
  
@@ -10,7 +10,7 @@ import { from, switchMap } from 'rxjs';
 export class AuthService {
 
   usuarioAtual$ = authState(this.auth);
-
+  
   constructor( private auth: Auth ) { }
 
   cadastro(nome: string, email: string, senha: string){

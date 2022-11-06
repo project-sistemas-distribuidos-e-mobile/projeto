@@ -13,3 +13,8 @@ ul{
     list-style: none;
     padding-left: 0;
 }
+
+button{
+    background-color: transparent;
+    border: 0;
+}

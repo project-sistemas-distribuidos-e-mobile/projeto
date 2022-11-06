@@ -67,7 +67,8 @@ export default{
         const fetch = new JogoService();
         const response = await fetch.getJogoPorID;
         try{
-            response.forEach(element => {
+            response.forEach(element => {               
+                jogo.id = element.id;
                 jogo.nome = element.name;
                 jogo.descricao = element.summary;
                 const date = new Date(element.first_release_date * 1000);
@@ -78,28 +79,30 @@ export default{
                     element.genres.forEach(genre =>{
                         jogo.generos.push(genre['name']);
                     })
-                }else{
-                    jogo.generos.push(element.genres);
                 }
                 if(element.involved_companies.length >= 1){
                     element.involved_companies.forEach(produtora =>{
                         jogo.produtoras.push(produtora['company']['name']);
                     })
-                }else{
-                    jogo.produtoras.push(element.involved_companies);
                 }
                 if(element.platforms.length >= 1){
                     element.platforms.forEach(plataforma =>{
                         jogo.plataformas.push(plataforma['name']);
                     })
-                }else{
-                    jogo.plataformas.push(element.production_companies);
                 }
                 if(element.cover != undefined){
                     jogo.poster += element.cover['image_id'] + '.jpg';  
                 }else if(element.artworks != undefined){
                     jogo.poster += element.artworks[0]['image_id'] + '.jpg';   
                 }
+                if(element.websites.length >= 1){
+                    element.websites.forEach(website => {
+                        if(website['url'].includes('store')){
+                            jogo.website.push(website['url']); 
+                        }
+                        
+                    });  
+                }                
             })
         } 
         catch (error){

@@ -50,6 +50,7 @@ export class CarouselComponent implements OnInit {
         poster.nome = response.data[i].nome;
         this.posters.push(poster);
       }
-    }).catch(error => console.log(error));
+    })
+    .catch(error => console.log(error));
   }
 }

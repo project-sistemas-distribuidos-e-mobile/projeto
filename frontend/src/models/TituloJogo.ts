@@ -1,4 +1,5 @@
 export class TituloJogo{
+    id: number = 0;
     nome: string = '';
     descricao: string = '';
     data_lancamento: string = '';
@@ -8,4 +9,5 @@ export class TituloJogo{
     produtoras: string[] = [];
     poster: string = '';
     background_poster: string = '';
+    website: string[] = [];
 }

@@ -15,15 +15,15 @@ export class TituloComponent implements OnInit {
   filme: Titulo = new Titulo();
   usuario$ = this.authservice.usuarioAtual$;
 
-  favoritar(userid: any, id: number){
-    this.favService.post(userid, id);
+  favoritar(id: any){
     this.favorito = !this.favorito;
+    this.favService.post(id, {
+      id: this.filme.id,
+      nome: this.filme.nome,
+      poster: this.filme.poster,
+    });
   }
-  
-  remover(){
-    this.favorito = !this.favorito;
-  }
-  constructor(private router: Router, public authservice: AuthService, private favService: FavService) { }
+  constructor(private router: Router, private authservice: AuthService, private favService: FavService) { }
 
   ngOnInit(): void {
     const dividi = this.router.url.replace("/titulo/", "").split('/');
@@ -32,21 +32,18 @@ export class TituloComponent implements OnInit {
       api.get('/filme')
       .then(response => {
         this.filme = response.data;
-        console.log(this.filme);
       }).catch(error => console.log(error));
     }
     if(route == 'series'){
       api.get('/serie')
       .then(response => {
         this.filme = response.data;
-        console.log(this.filme);
       }).catch(error => console.log(error));
     }
     if(route == 'animacoes'){
       api.get('/animacao')
       .then(response => {
         this.filme = response.data;
-        console.log(this.filme);
       }).catch(error => console.log(error));
     }
    }

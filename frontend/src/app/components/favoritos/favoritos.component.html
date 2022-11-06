@@ -1,5 +1,8 @@
 <div *ngIf="usuario$ | async as usuario" id="fav">
     <h1>Favoritos</h1>
-    <h2>{{usuario.email}}</h2>
-    <button type="button" (click)="abrirFavoritos(usuario.uid)">Abrir Favoritos</button>
+    <div *ngFor="let favorito of lista_de_favorito">
+        <h4>{{favorito.nome}}</h4>
+        <img src="{{favorito.poster}}" alt="{{favorito.nome}}">
+        <button type="button" (click)="deletar(usuario.uid, favorito.id)">Favorito <i class="bi bi-heart-fill"></i></button>
+    </div>
 </div>

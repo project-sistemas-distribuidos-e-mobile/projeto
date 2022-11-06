@@ -1,6 +1,16 @@
 <div class="row p-4 bg-light" id="conteudo">
     <div class="col-sm-4" id="poster">
-        <img src="{{filme.poster}}" alt="">
+        <img src="{{filme.poster}}" alt="{{filme.nome}}">
+        <div *ngIf="filme.homepage != '';else cinema">
+            <h4 class="mt-3 ps-5">
+                <a href="{{filme.homepage}}" target="_blank" class="ps-5 text-decoration-none text-black">Assista <i class="bi bi-tv"></i></a>
+            </h4>
+        </div>
+        <ng-template #cinema>
+            <h4 class="mt-3 ps-5">
+                <a href="https://www.cineart.com.br/em-cartaz" target="_blank" class="text-decoration-none text-black">Ainda nos cinemas <i class="bi bi-tv"></i></a>
+            </h4>
+        </ng-template>
     </div>
     <div class="col">
         <h2>{{filme.nome}}</h2>
@@ -16,18 +26,18 @@
 
             <span *ngIf="usuario$ | async as user; else naoLogin">
                 <span *ngIf="favorito;else clique">
-                    Favoritar <i class="text-danger bi bi-heart-fill" (click)="remover()"></i>
+                    Favoritar <i class="text-danger bi bi-heart-fill"></i>
                 </span>
 
                 <ng-template #clique>
-                    <button type="button">Favoritar <i class="text-danger bi bi-heart" (click)="favoritar(user.uid, filme.id)"></i></button>
+                    <button type="button">Favoritar <i class="text-danger bi bi-heart" (click)="favoritar(user.uid)"></i></button>
                 </ng-template>
 
             </span>
             <ng-template #naoLogin>
                 <!-- Button trigger modal -->
                 <button type="button" data-bs-toggle="modal" data-bs-target="#avisoModal">
-                    Favoritar <i class="text-danger bi bi-heart"></i>
+                    Favorito <i class="text-danger bi bi-heart"></i>
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="avisoModal" tabindex="-1" aria-hidden="true">

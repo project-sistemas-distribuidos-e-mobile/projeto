@@ -74,17 +74,14 @@ export default{
             response.genres.forEach(genre =>{
                 filme.generos.push(genre['name']);
             })
-        }else{
-            filme.generos.push(response.genres);
         }
         if(response.production_companies.length >= 1){
             response.production_companies.forEach(produtora =>{
                 filme.produtoras.push(produtora['name']);
             })
-        }else{
-            filme.produtoras.push(response.production_companies);
         }
         filme.poster += response.poster_path;
+        filme.homepage = response.homepage;
         return res.json(filme);
     }
 }

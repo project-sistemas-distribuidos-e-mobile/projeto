@@ -1,4 +1,5 @@
 export class TituloJogo{
+    id: number = 0;
     nome: string = '';
     descricao: string = '';
     data_lancamento:  string = '';
@@ -7,4 +8,5 @@ export class TituloJogo{
     plataformas: string[] = [];
     produtoras: string[] = [];
     poster: string = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/';
+    website: string[] = [];
 }

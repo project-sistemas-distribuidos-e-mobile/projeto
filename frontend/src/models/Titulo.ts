@@ -8,4 +8,5 @@ export class Titulo{
     generos: string[] = [];
     produtoras: string[] = [];
     poster: string = '';
+    homepage: string = '';
 }

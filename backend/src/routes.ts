@@ -40,5 +40,4 @@ routes.get('/filme', FilmesController.buscarFilmePorId);
 routes.get('/serie', SeriesController.buscarSeriePorId);
 routes.get('/animacao', SeriesController.buscarSeriePorId);
 routes.get('/jogo', JogosControllers.buscarJogoPorId);
-
 export {routes, busca, id, categoria, pagina};

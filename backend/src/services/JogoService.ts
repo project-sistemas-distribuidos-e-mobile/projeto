@@ -49,7 +49,7 @@ class JogoService{
             'Client-ID': clientID,
             'Authorization': `Bearer ${token}`,
         },
-        data: `fields name, summary, first_release_date, rating, genres.name, involved_companies.company.name, cover.image_id, artworks.image_id, platforms.name, url; where id = ${id};`
+        data: `fields name, summary, first_release_date, rating, genres.name, involved_companies.company.name, cover.image_id, artworks.image_id, platforms.name, websites.url; where id = ${id};`
         })
         .then((res) => {
             const data = res.data;
