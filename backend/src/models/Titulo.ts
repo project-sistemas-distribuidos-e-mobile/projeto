@@ -9,4 +9,5 @@ export class Titulo{
     produtoras: string[] = [];
     poster: string = 'https://image.tmdb.org/t/p/original';
     homepage: string = '';
+    imdb_id: string = '';
 }

@@ -18,15 +18,29 @@ export class FavoritosComponent implements OnInit {
       const entries = Object.entries(ls);
       entries.forEach(entry => {
         const c = entry[1];
-        c.id = entry[0];
+        c.uid = entry[0];
         this.lista_de_favorito.push(c);
+        console.log(this.lista_de_favorito);
       })
     })
   }
 
+  reloadComponent(self:boolean,urlToNavigateTo ?:string){
+    //skipLocationChange:true means dont update the url to / when navigating
+   const url=self ? this.router.url :urlToNavigateTo;
+   this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
+     this.router.navigate([`/${url}`]).then(()=>{
+     })
+   })
+ }
+
   public deletar(id_user: string, id_node: string){
-    this.favService.delete(id_user, id_node);
-  }
+    const observable = this.favService.delete(id_user, id_node);
+    observable.subscribe(response => {
+      console.log("Favorito removido!" + response);
+      this.reloadComponent(true);
+    });
+  };
 
   constructor(private authservice: AuthService, private favService: FavService, private router: Router) { }
 

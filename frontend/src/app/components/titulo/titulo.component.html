@@ -1,15 +1,16 @@
 <div class="row p-4 bg-light" id="conteudo">
     <div class="col-sm-4" id="poster">
         <img src="{{filme.poster}}" alt="{{filme.nome}}">
-        <div *ngIf="filme.homepage != '';else cinema">
+        <div *ngIf="filme.homepage != '';else imdb">
             <h4 class="mt-3 ps-5">
                 <a href="{{filme.homepage}}" target="_blank" class="ps-5 text-decoration-none text-black">Assista <i class="bi bi-tv"></i></a>
             </h4>
         </div>
-        <ng-template #cinema>
-            <h4 class="mt-3 ps-5">
-                <a href="https://www.cineart.com.br/em-cartaz" target="_blank" class="text-decoration-none text-black">Ainda nos cinemas <i class="bi bi-tv"></i></a>
-            </h4>
+        <ng-template #imdb>
+            <p class="mt-3">
+                Infelizmente não encontramos o link para esse material. Consulte o IMDB ➡️
+                <a href="https://www.imdb.com/title/{{filme.imdb_id}}/" target="_blank" class="fs-5"><i class="bi bi-tv"></i></a>
+            </p>
         </ng-template>
     </div>
     <div class="col">

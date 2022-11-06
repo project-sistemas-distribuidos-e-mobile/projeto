@@ -9,4 +9,5 @@ export class Titulo{
     produtoras: string[] = [];
     poster: string = '';
     homepage: string = '';
+    imdb_id: string = '';
 }

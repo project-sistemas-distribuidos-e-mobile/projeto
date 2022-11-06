@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'cadastro', component: CadastroComponent},
   {path: 'favoritos/:id', component: FavoritosComponent, ...canActivate(redirecionarParaLogin)},
   {path: 'resultados/:nome', component: PesquisaComponent},
-  {path: 'titulo/:tipo/:id', component: TituloComponent}, 
+  {path: 'titulo/:categoria/:id', component: TituloComponent}, 
   {path: 'titulo/:id', component: TituloJogoComponent}, 
 ]
 

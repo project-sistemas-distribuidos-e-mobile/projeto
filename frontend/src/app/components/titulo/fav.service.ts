@@ -28,10 +28,9 @@ export class FavService {
   get(id: string): Observable<any[]>{
     return this.http.get<any[]>(`${environment.firebase.databaseURL}/usuarios/${id}/.json`);
   };
-  
-  delete(key: string, id: string){
-    axios.delete(`${environment.firebase.databaseURL}/usuarios/${key}/${id}/.json`)
-    .then(response => console.log("success"))
-    .catch(erro => console.log(erro));
+
+  delete(user:string, id: string): Observable<any>{
+    return this.http.delete<any>(`${environment.firebase.databaseURL}/usuarios/${user}/${id}/.json`);
   };
+  
 }

@@ -83,6 +83,7 @@ export default{
             }
             serie.poster += response.poster_path;
             serie.homepage = response.homepage;
+            serie.imdb_id = response.imdb_id;
         }
         catch (error:any){
             console.log(error);
