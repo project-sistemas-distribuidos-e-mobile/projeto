@@ -30,7 +30,7 @@ export default{
         return res.json(array_de_filmes);
     },
     
-    //Retorna um array de 5 filmes buscados pelo nome conforme o Modelo
+    //Retorna um array de 10 filmes buscados pelo nome conforme o Modelo
     async buscarFilmePorNome(req: Request, res: Response){
         let resultado_pesquisa: {}[] = [];
         const fetch = new FilmeService();
@@ -70,7 +70,7 @@ export default{
         filme.data_lancamento = response.release_date.split('-').reverse().join('-');
         filme.idioma = response.original_language.toUpperCase();
         filme.nota = response.vote_average.toFixed(2);
-        if(response.genres.length > 1){
+        if(response.genres.length >= 1){
             response.genres.forEach(genre =>{
                 filme.generos.push(genre['name']);
             })

@@ -30,7 +30,7 @@ export default{
         return res.json(array_de_series);
     },
 
-    //Retorna um array de 5 seriados buscados pelo nome conforme o Modelo
+    //Retorna um array de 10 seriados buscados pelo nome conforme o Modelo
     async buscarSeriePorNome(req: Request, res: Response){
         let resultado_pesquisa: {}[] = [];
         const fetch = new SerieService();

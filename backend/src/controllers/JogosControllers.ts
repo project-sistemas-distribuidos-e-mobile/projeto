@@ -39,7 +39,7 @@ export default{
         return res.json(array_de_jogos);
     },
 
-    //Retorna um array de 5 jogos buscados pelo nome conforme o Modelo
+    //Retorna um array de 10 jogos buscados pelo nome conforme o Modelo
     async buscarJogoPorNome(req: Request, res: Response){
         let array_de_jogos: {}[] = [];
         const jogos = new JogoService();
@@ -100,7 +100,6 @@ export default{
                         if(website['url'].includes('store')){
                             jogo.website.push(website['url']); 
                         }
-                        
                     });  
                 }                
             })
