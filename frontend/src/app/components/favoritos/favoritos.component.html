@@ -1,6 +1,6 @@
 <div *ngIf="usuario$ | async as usuario" id="fav">
     <h1 class="text-center">Favoritos</h1>
-    <div class="row bg-light">
+    <div class="bg-light row">
         <div *ngFor="let favorito of lista_de_favorito" class="col">
             <div class="favorito py-2">
                 <img src="{{favorito.poster}}" alt="{{favorito.nome}}" class="border rounded poster">

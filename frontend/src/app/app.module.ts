@@ -13,7 +13,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { HomeComponent } from './components/home/home.component';
 import { TituloComponent } from './components/titulo/titulo.component';
-import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -37,7 +36,6 @@ import { FavoritosComponent } from './components/favoritos/favoritos.component';
     PesquisaComponent,
     HomeComponent,
     TituloComponent,
-    TituloJogoComponent,
     LoginComponent,
     CadastroComponent,
     FavoritosComponent

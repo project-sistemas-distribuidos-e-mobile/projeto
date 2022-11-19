@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../login/auth.service';
 import { FavService } from '../titulo/fav.service';
+import api from 'src/services/api';
 
 @Component({
   selector: 'app-favoritos',
@@ -20,7 +21,6 @@ export class FavoritosComponent implements OnInit {
         const c = entry[1];
         c.uid = entry[0];
         this.lista_de_favorito.push(c);
-        console.log(this.lista_de_favorito);
       })
     })
   }

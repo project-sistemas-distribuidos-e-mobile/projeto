@@ -41,7 +41,7 @@
                     <img src="{{resultado.imagem}}" alt="{{resultado.nome}}" class="rounded-start" (click)="abrirJogo(resultado.id)">
                 </a>
                 <div class="d-flex flex-column ms-3 p-2">
-                    <a routerLink="/titulo/{{resultado.id}}" class="text-black text-decoration-none">
+                    <a routerLink="/titulo/jogos/{{resultado.id}}" class="text-black text-decoration-none">
                         <h5 (click)="abrirJogo(resultado.id)">{{resultado.nome}}</h5>
                     </a>
                     <p>{{resultado.descricao}}</p>

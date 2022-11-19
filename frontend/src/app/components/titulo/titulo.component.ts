@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import api from '../../../services/api';
 import { Titulo } from 'src/models/Titulo';
+import { TituloJogo } from 'src/models/TituloJogo';
 import { Router } from '@angular/router';
 import { AuthService } from '../login/auth.service';
 import { FavService } from './fav.service';
@@ -13,14 +14,17 @@ import { FavService } from './fav.service';
 export class TituloComponent implements OnInit {
   favorito = false;
   filme: Titulo = new Titulo();
+  jogo: TituloJogo = new TituloJogo();
   usuario$ = this.authservice.usuarioAtual$;
+  categoria: string = '';
 
-  favoritar(id: any){
+  favoritar(id: any, data:any){
     this.favorito = !this.favorito;
     this.favService.post(id, {
-      id: this.filme.id,
-      nome: this.filme.nome,
-      poster: this.filme.poster,
+      id: data[0],
+      nome: data[1],
+      poster: data[2],
+      categoria: this.categoria,
     });
   }
   constructor(private router: Router, private authservice: AuthService, private favService: FavService) { }
@@ -28,6 +32,8 @@ export class TituloComponent implements OnInit {
   ngOnInit(): void {
     const dividi = this.router.url.replace("/titulo/", "").split('/');
     const route = dividi[0];
+    this.categoria = route;
+    this.router.events  
     if(route == 'filmes'){
       api.get('/filme')
       .then(response => {
@@ -40,10 +46,10 @@ export class TituloComponent implements OnInit {
         this.filme = response.data;
       }).catch(error => console.log(error));
     }
-    if(route == 'animacoes'){
-      api.get('/animacao')
+    if(route == 'jogos'){
+      api.get('/jogo')
       .then(response => {
-        this.filme = response.data;
+        this.jogo = response.data;
       }).catch(error => console.log(error));
     }
    }

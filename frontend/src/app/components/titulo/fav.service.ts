@@ -17,6 +17,7 @@ export class FavService {
       id: data.id,
       nome: data.nome,
       poster: data.poster,
+      categoria: data.categoria,
     })
     .then(response => {
       console.log(response);

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 import { TituloComponent } from './components/titulo/titulo.component';
-import { TituloJogoComponent } from './components/titulo-jogo/titulo-jogo.component';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
@@ -17,8 +16,7 @@ const routes: Routes = [
   {path: 'cadastro', component: CadastroComponent},
   {path: 'favoritos/:id', component: FavoritosComponent, ...canActivate(redirecionarParaLogin)},
   {path: 'resultados/:nome', component: PesquisaComponent},
-  {path: 'titulo/:categoria/:id', component: TituloComponent}, 
-  {path: 'titulo/:id', component: TituloJogoComponent}, 
+  {path: 'titulo/:categoria/:id', component: TituloComponent},
 ]
 
 @NgModule({
