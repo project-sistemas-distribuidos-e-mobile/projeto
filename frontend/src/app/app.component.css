@@ -15,11 +15,9 @@ a > i{
 }
 /*ESTILO DO SEARCH BAR*/
 div#search{
-    position: absolute;
-    top: 70px;
-    width: 75vw;
-    left: 50%;
-    transform: translate(-50%);
+    margin: auto;
+    margin-top: 18px;
+    width: 80%;
     z-index: 2;
 }
 

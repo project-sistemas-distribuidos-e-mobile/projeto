@@ -1,6 +1,5 @@
 div#container{
-    position: absolute;
-    top: 105px;
+    margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
 }

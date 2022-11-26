@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,9 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingInterceptor } from 'src/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { FavoritosComponent } from './components/favoritos/favoritos.component';
     TituloComponent,
     LoginComponent,
     CadastroComponent,
-    FavoritosComponent
+    FavoritosComponent,
+    LoadingComponent,
   ],
   imports: [
     HttpClientModule,
@@ -49,8 +53,13 @@ import { FavoritosComponent } from './components/favoritos/favoritos.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     HotToastModule.forRoot(),
+    MatProgressSpinnerModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

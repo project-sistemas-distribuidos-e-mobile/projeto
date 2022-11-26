@@ -1,9 +1,6 @@
 div#container{
     width: 100%;
-    position: absolute;
-    top: 1050px;
-    left: 50%;
-    transform: translate(-50%);
+    margin-top: 15px;
 }
 
 div#series{
@@ -18,8 +15,15 @@ div.show{
     text-align: center;
 }
 
+.moldura{
+    background: rgba(0, 0, 0, 0.438);
+    height: 240px;
+    border-radius: 10px;
+}
+
 img.poster{
     object-fit: cover;
+    height: 100%;
     width: 100%;
 }
 img.poster:hover{

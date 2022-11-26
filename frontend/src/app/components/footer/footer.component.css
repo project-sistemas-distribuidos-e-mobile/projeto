@@ -1,9 +1,6 @@
 div#container{
     width: 100%;
-    position: absolute;
-    top: 2400px;
-    left: 50%;
-    transform: translate(-50%);
+    margin-top: 90px;
 }
 
 ul{
