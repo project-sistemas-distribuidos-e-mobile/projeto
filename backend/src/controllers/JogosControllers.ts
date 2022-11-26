@@ -98,7 +98,6 @@ export default{
                     jogo.bg_poster += element.artworks[1]['image_id'] + '.jpg'; 
                 }
                 if(element.websites.length >= 1){
-                    console.log(element.websites);
                     element.websites.forEach(website => {
                         if(website['url'].includes('store')){
                             jogo.website.push(website['url']); 
