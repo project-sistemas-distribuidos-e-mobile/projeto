@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import api from '../../../services/api';
 import { Data } from 'src/models/Data';
+import { FetchService } from 'src/services/fetch.service';
 
 @Component({
   selector: 'app-animations',
@@ -10,20 +10,15 @@ import { Data } from 'src/models/Data';
 export class AnimationsComponent implements OnInit {
   animacoes: Data[] = [];
 
-  constructor() { }
+  constructor(private fetchService: FetchService) { }
 
   ngOnInit(): void {
-    api.get('/animacoes')
-    .then(response => {
+    this.fetchService.getAnimacoes().then(response => {
       this.animacoes = response.data;
-    }).catch(error => console.log(error))  
+    })
   }
   abrirAnimacao(id: number){
-    //fazer uma mudança para consulta tanto de filmes quanto de tv shows
-    api.post(`/titulo/tv/${id}`, id)
-    .then(response => {
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postSerie(id);
   }
 
 }

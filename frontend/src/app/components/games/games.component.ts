@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import api from '../../../services/api';
 import { Jogo } from 'src/models/Jogo';
+import { FetchService } from 'src/services/fetch.service';
 
 @Component({
   selector: 'app-games',
@@ -9,21 +9,15 @@ import { Jogo } from 'src/models/Jogo';
 })
 export class GamesComponent implements OnInit {
   jogos: Jogo[] = [];
-  constructor() { }
+  constructor(private fetchService: FetchService) { }
 
   ngOnInit(): void {
-    api.get('/jogos')
-    .then(response => {
+    this.fetchService.getJogos().then(response => {
       this.jogos = response.data;
-    }).catch(error => console.log(error));  
-  }
-
-
-  abrirJogo(id: number){
-    api.post(`/titulo/jogo/${id}`, id)
-    .then(response => {
     })
-    .catch(error => console.log(error));
   }
-
+  
+  abrirJogo(id: number){
+    this.fetchService.postJogo(id);
+  }
 }

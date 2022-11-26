@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import api from '../../../services/api';
 import { Data } from 'src/models/Data';
+import { FetchService } from 'src/services/fetch.service';
 
 @Component({
   selector: 'app-series',
@@ -9,19 +9,15 @@ import { Data } from 'src/models/Data';
 })
 export class SeriesComponent implements OnInit {
   series: Data[] = [];
-  constructor() { }
+  constructor(private fetchService: FetchService) { }
 
   ngOnInit(): void {
-    api.get('/series')
-    .then(response => {
+    this.fetchService.getSeries().then(response => {
       this.series = response.data;
-    }).catch(error => console.log(error))  
+    })
   }
 
   abrirSerie(id: number){
-    api.post(`/titulo/tv/${id}`, id)
-    .then(response => {
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postSerie(id);
   }
 }

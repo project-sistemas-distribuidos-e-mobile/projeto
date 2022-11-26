@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './components/login/auth.service';
 import { Router } from '@angular/router';
-import api from 'src/services/api';
+import { FetchService } from 'src/services/fetch.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent{
   usuario$ = this.authService.usuarioAtual$;
   
   pagina: number = 1;
-  constructor(public authService: AuthService, private router: Router){}
+  constructor(public authService: AuthService, private router: Router, private fetchService: FetchService){}
   
   logout(){
     this.authService.logout().subscribe(()=>{
@@ -22,16 +22,10 @@ export class AppComponent{
   }
 
   public home(){
-    api.post(`/home/${this.pagina}`, this.pagina++)
-    .then(response => {
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postHome(this.pagina++);
   }
 
   public procurar(nome: string){
-    api.post(`/pesquisa/${nome}`, nome)
-    .then(response => {
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postPesquisa(nome);
   }
 }

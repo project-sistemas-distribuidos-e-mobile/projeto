@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../login/auth.service';
 import { FavService } from '../titulo/fav.service';
-import api from 'src/services/api';
 
 @Component({
   selector: 'app-favoritos',
@@ -53,14 +52,7 @@ export class FavoritosComponent implements OnInit {
     if(categoria == 'jogos'){
       categoriaApi = categoria;
     }
-    api.post(`/titulo/${categoriaApi}/${id}`, id).then(response => {
-      console.log(response);
-    }).then(() => {
-      this.router.navigateByUrl(`/titulo/${categoriaApi}/${id}`)
-    })
-    .catch(error => {
-      console.log(error)
-    }) 
+    
   }
 
   constructor(private authservice: AuthService, private favService: FavService, private router: Router) { }

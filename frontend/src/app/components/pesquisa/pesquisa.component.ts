@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
-import api from 'src/services/api';
 import { Data } from 'src/models/Data';
 import { Jogo } from 'src/models/Jogo';
-
+import { FetchService } from 'src/services/fetch.service';
 
 @Component({
   selector: 'app-pesquisa',
@@ -15,29 +14,18 @@ export class PesquisaComponent implements OnInit {
   resultados_serie: Data[] = [];
   resultados_jogo: Jogo[] = [];
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private fetchService: FetchService) { }
   
   abrirFilme(id: number){
-    api.post(`/titulo/movie/${id}`, id)
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postFilme(id);
   }
   
   abrirSerie(id: number){
-    api.post(`/titulo/tv/${id}`, id)
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postSerie(id);
   }
 
   abrirJogo(id: number){
-    api.post(`/titulo/jogo/${id}`, id)
-    .then(response => {
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postJogo(id);
   }
 
 
@@ -46,23 +34,19 @@ export class PesquisaComponent implements OnInit {
       return false;
     };
 
-    api.get('/res/filme')
+    this.fetchService.getFilmeByName()
     .then(response => {
       this.resultados_filme = response.data;
-    }).catch(error => console.log(error));
+    });
 
-    api.get('/res/serie')
+    this.fetchService.getSerieByName()
     .then(response => {
       this.resultados_serie = response.data;
-    }).catch(error => console.log(error));
+    });
 
-    api.get('/res/jogo')
+    this.fetchService.getJogoByName()
     .then(response => {
       this.resultados_jogo = response.data;
-    }).catch(error => console.log(error));
-
-    
+    });
   }
-
- 
 }

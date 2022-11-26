@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import api from '../../../services/api';
 import { Data } from 'src/models/Data';
+import { FetchService } from 'src/services/fetch.service';
 
 @Component({
   selector: 'app-filmes',
@@ -9,19 +9,15 @@ import { Data } from 'src/models/Data';
 })
 export class FilmesComponent implements OnInit {
   filmes: Data[] = [];
-  constructors() { }
+  constructor(private fetchService: FetchService) { }
   
   ngOnInit():void {
-    api.get('/filmes')
-    .then(response => {
+    this.fetchService.getFilmes().then(response => {
       this.filmes = response.data;
-    }).catch(error => console.log(error))  
+    })
   }
 
   abrirFilme(id: number){
-    api.post(`/titulo/movie/${id}`, id)
-    .then(response => {
-    })
-    .catch(error => console.log(error));
+    this.fetchService.postFilme(id);
   }
 }

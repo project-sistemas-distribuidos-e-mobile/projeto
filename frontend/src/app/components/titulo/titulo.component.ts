@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import api from '../../../services/api';
 import { Titulo } from 'src/models/Titulo';
 import { TituloJogo } from 'src/models/TituloJogo';
 import { Router } from '@angular/router';
 import { AuthService } from '../login/auth.service';
 import { FavService } from './fav.service';
+import { FetchService } from 'src/services/fetch.service';
 
 @Component({
   selector: 'app-titulo',
@@ -27,31 +27,27 @@ export class TituloComponent implements OnInit {
       categoria: this.categoria,
     });
   }
-  constructor(private router: Router, private authservice: AuthService, private favService: FavService) { }
+  constructor(private router: Router, private authservice: AuthService, private favService: FavService, private fetchService: FetchService) { }
 
   ngOnInit(): void {
     const dividi = this.router.url.replace("/titulo/", "").split('/');
     const route = dividi[0];
-    this.categoria = route;
-    this.router.events  
+    this.categoria = route; 
+    
     if(route == 'filmes'){
-      api.get('/filme')
-      .then(response => {
+      this.fetchService.getFilme().then(response => {
         this.filme = response.data;
-      }).catch(error => console.log(error));
+      })
     }
     if(route == 'series'){
-      api.get('/serie')
-      .then(response => {
+      this.fetchService.getSerie().then(response => {
         this.filme = response.data;
-      }).catch(error => console.log(error));
+      })
     }
     if(route == 'jogos'){
-      api.get('/jogo')
-      .then(response => {
+      this.fetchService.getJogo().then(response => {
         this.jogo = response.data;
-      }).catch(error => console.log(error));
-    }
+      })
    }
-
+  }
 }
