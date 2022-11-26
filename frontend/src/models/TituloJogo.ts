@@ -8,6 +8,6 @@ export class TituloJogo{
     plataformas: string[] = [];
     produtoras: string[] = [];
     poster: string = '';
-    background_poster: string = '';
+    bg_poster: string = '';
     website: string[] = [];
 }

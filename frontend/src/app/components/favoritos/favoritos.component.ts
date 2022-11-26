@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FetchService } from 'src/services/fetch.service';
 import { AuthService } from '../login/auth.service';
 import { FavService } from '../titulo/fav.service';
 
@@ -28,7 +29,7 @@ export class FavoritosComponent implements OnInit {
       entries.forEach(entry => {
         const c = entry[1];
         c.uid = entry[0];
-        this.lista_de_favorito.push(c);
+        this.lista_de_favorito.push(c);        
       })
     })
   }
@@ -42,23 +43,30 @@ export class FavoritosComponent implements OnInit {
   };
 
   public abrirFavorito(categoria: string, id: number){
-    let categoriaApi = '';
-    if(categoria == 'filmes'){
-      categoriaApi = 'movie';
+    if(categoria == 'filme'){
+      this.fetchService.postFilme(id)
+      .then(() => {
+        this.router.navigate([`/${categoria}/${id}`, {favorito: true}] );
+      });
     }
-    if(categoria == 'series'){
-      categoriaApi = 'tv'
+    if(categoria == 'serie'){
+      this.fetchService.postSerie(id)
+      .then(() => {
+        this.router.navigate([`/${categoria}/${id}`, {favorito: true}]);
+      });
     }
-    if(categoria == 'jogos'){
-      categoriaApi = categoria;
+    if(categoria == 'jogo'){
+      this.fetchService.postJogo(id)
+      .then(() => {
+        this.router.navigate([`/${categoria}/${id}`, {favorito: true}]);
+      });
     }
-    
   }
 
-  constructor(private authservice: AuthService, private favService: FavService, private router: Router) { }
+  constructor(private authservice: AuthService, private favService: FavService, private router: Router, private fetchService: FetchService) { }
 
   ngOnInit(): void {
-    const id = this.router.url.replace("/favoritos/", "");
+    const id = this.router.url.replace("user/favoritos/", "");
     this.getFavoritos(id);
   }
 

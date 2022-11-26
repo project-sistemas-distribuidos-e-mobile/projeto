@@ -81,6 +81,7 @@ export default{
             })
         }
         filme.poster += response.poster_path;
+        filme.bg_poster += response.backdrop_path;
         filme.homepage = response.homepage;
         filme.imdb_id = response.imdb_id;
         return res.json(filme);

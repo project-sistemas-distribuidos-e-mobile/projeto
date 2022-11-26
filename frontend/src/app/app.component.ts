@@ -24,7 +24,7 @@ export class AppComponent{
   public home(){
     this.fetchService.postHome(this.pagina++);
   }
-
+  
   public procurar(nome: string){
     this.fetchService.postPesquisa(nome);
   }

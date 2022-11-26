@@ -12,12 +12,13 @@ import { FetchService } from 'src/services/fetch.service';
   styleUrls: ['./titulo.component.css']
 })
 export class TituloComponent implements OnInit {
-  favorito = false;
+  favorito = true ? this.router.url.includes('true') : false; 
   filme: Titulo = new Titulo();
   jogo: TituloJogo = new TituloJogo();
   usuario$ = this.authservice.usuarioAtual$;
   categoria: string = '';
 
+  //Função que envia dados para o serviço de Favoritar
   favoritar(id: any, data:any){
     this.favorito = !this.favorito;
     this.favService.post(id, {
@@ -30,8 +31,8 @@ export class TituloComponent implements OnInit {
   constructor(private router: Router, private authservice: AuthService, private favService: FavService, private fetchService: FetchService) { }
 
   ngOnInit(): void {
-    const dividi = this.router.url.replace("/home/", "").split('/');
-    const route = dividi[0];
+    const dividi = this.router.url.split('/');
+    const route = dividi[1];
     this.categoria = route;     
     if(route == 'filme'){
       this.fetchService.getFilme().then(response => {
@@ -46,7 +47,9 @@ export class TituloComponent implements OnInit {
     if(route == 'jogo'){
       this.fetchService.getJogo().then(response => {
         this.jogo = response.data;
+        console.log(this.jogo);
       })
    }
+    
   }
 }

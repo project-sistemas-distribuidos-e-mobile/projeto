@@ -82,6 +82,7 @@ export default{
                 })
             }
             serie.poster += response.poster_path;
+            serie.bg_poster += response.backdrop_path;
             serie.homepage = response.homepage;
             serie.imdb_id = response.imdb_id;
         }

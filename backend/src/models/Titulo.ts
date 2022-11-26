@@ -8,6 +8,7 @@ export class Titulo{
     generos: string[] = [];
     produtoras: string[] = [];
     poster: string = 'https://image.tmdb.org/t/p/original';
+    bg_poster: string = 'https://image.tmdb.org/t/p/original';
     homepage: string = '';
     imdb_id: string = '';
 }

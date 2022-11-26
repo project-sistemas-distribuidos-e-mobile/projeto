@@ -36,7 +36,7 @@
               </ul>
             </a>    
             <div *ngIf="usuario$ | async as user" class="my-auto">
-              <a class="nav-link fw-semibold text-light" routerLink="/favoritos/{{user.uid}}">
+              <a class="nav-link fw-semibold text-light" routerLink="user/favoritos/{{user.uid}}">
                 Favoritos
               </a>
             </div>
@@ -45,11 +45,11 @@
     </div>
 </nav>
 <div class="input-group mb-3" id="search">
-    <input #input type="text" class="form-control" placeholder="Ex: Homem-Aranha De Volta ao Lar" 
-    (blur)="procurar(input.value)">
-    <button class="btn btn-primary" type="button" routerLink="/resultados/{{input.value}}" (click)="input.value = '' ">
-        <i class="bi bi-search"></i>
-    </button>
+  <input #input type="text" class="form-control" placeholder="Ex: Homem-Aranha De Volta ao Lar" 
+  (blur)="procurar(input.value)">
+  <button class="btn btn-primary" type="button" routerLink="resultados/{{input.value}}" (click)="input.value = '' ">
+      <i class="bi bi-search"></i>
+  </button>
 </div>
 <router-outlet></router-outlet>
 <div id="container" class="p-5 footer bg-light">
@@ -63,7 +63,7 @@
           <ul class="footer">
               <li><a routerLink="home" class="footer">Home</a></li>
               <li *ngIf="usuario$ | async as user">
-                  <a routerLink="/favoritos/{{user.uid}}" class="footer">Favoritos</a>
+                  <a routerLink="user/favoritos/{{user.uid}}" class="footer">Favoritos</a>
               </li>
           </ul>
       </div>

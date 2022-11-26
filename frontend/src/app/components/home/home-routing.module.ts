@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PesquisaComponent } from '../pesquisa/pesquisa.component';
+import { FavoritosComponent } from '../favoritos/favoritos.component';
 import { TituloComponent } from '../titulo/titulo.component';
 import { HomeComponent } from './home.component';
 
@@ -8,7 +8,7 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: ':categoria/:id', component: TituloComponent},
-  {path: 'resultados/:nome', component: PesquisaComponent},
+  {path: 'user/favoritos/:id', component: FavoritosComponent},
 ];
 
 @NgModule({

@@ -8,6 +8,7 @@ export class Titulo{
     generos: string[] = [];
     produtoras: string[] = [];
     poster: string = '';
+    bg_poster: string = '';
     homepage: string = '';
     imdb_id: string = '';
 }

@@ -19,7 +19,6 @@ import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingInterceptor } from 'src/interceptors/loading.interceptor';
-import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     CadastroComponent,
     FavoritosComponent,
     LoadingComponent,
-    NotfoundComponent,
   ],
   imports: [
     HttpClientModule,

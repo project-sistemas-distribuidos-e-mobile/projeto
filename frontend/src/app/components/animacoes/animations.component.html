@@ -5,7 +5,7 @@
             <div class="moldura">
                 <img src="{{animacao.imagem || 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg'}}" alt="{{animacao.nome}}" class="poster rounded">
             </div>
-            <a class="fw-bold text-decoration-none rounded-bottom" (click)="abrirAnimacao(animacao.id)" routerLink="serie/{{animacao.id}}">{{animacao.nome}}</a>
+            <a class="fw-bold text-decoration-none rounded-bottom" (click)="abrirAnimacao(animacao.id)" routerLink="/serie/{{animacao.id}}">{{animacao.nome}}</a>
         </div>
     </div>
 </div> 

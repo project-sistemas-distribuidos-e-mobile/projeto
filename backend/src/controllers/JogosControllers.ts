@@ -25,7 +25,7 @@ export default{
                 if(element.artworks != undefined){
                     jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
                 } else if(element.screenshots != undefined){
-                    jogo.background_imagem += element.screenshots[0]['image_id'] + '.jpg';
+                    jogo.background_imagem += element.screenshots[1]['image_id'] + '.jpg';
                 } else{
                     jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
                 }
@@ -91,15 +91,25 @@ export default{
                     })
                 }
                 if(element.cover != undefined){
-                    jogo.poster += element.cover['image_id'] + '.jpg';  
+                    jogo.poster += element.cover['image_id'] + '.jpg';
+                    jogo.bg_poster += element.cover['image_id'] + '.jpg';
                 }else if(element.artworks != undefined){
-                    jogo.poster += element.artworks[0]['image_id'] + '.jpg';   
+                    jogo.poster += element.artworks[0]['image_id'] + '.jpg'; 
+                    jogo.bg_poster += element.artworks[1]['image_id'] + '.jpg'; 
                 }
                 if(element.websites.length >= 1){
+                    console.log(element.websites);
                     element.websites.forEach(website => {
                         if(website['url'].includes('store')){
                             jogo.website.push(website['url']); 
                         }
+                        if(website['url'].includes('nintendo')){
+                            jogo.website.push(website['url']); 
+                        }
+                        if(website['url'].includes(element.name.toLowerCase().replaceAll(/\s/g,''))){
+                            jogo.website.push(website['url']); 
+                        }
+                        
                     });  
                 }                
             })

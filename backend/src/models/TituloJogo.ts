@@ -8,5 +8,6 @@ export class TituloJogo{
     plataformas: string[] = [];
     produtoras: string[] = [];
     poster: string = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/';
+    bg_poster: string = 'https://images.igdb.com/igdb/image/upload/t_screenshot_big_2x/';
     website: string[] = [];
 }
