@@ -52,4 +52,20 @@
     </button>
 </div>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<div id="container" class="p-5 footer bg-light">
+  <div class="row">
+      <div class="col">
+          <h3>Nome do site</h3>
+          <p>Este Web Service foi desenvolvido durante o trabalho de Sistemas Distribuídos e Mobile. O objetivo dele é disponibilizar informações sobre entreterimento, principalmente filmes e jogos.</p>
+      </div>
+      <div class="col">
+          <h3>Links</h3>
+          <ul class="footer">
+              <li><a routerLink="home" class="footer">Home</a></li>
+              <li *ngIf="usuario$ | async as user">
+                  <a routerLink="/favoritos/{{user.uid}}" class="footer">Favoritos</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>

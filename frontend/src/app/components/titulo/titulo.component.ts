@@ -30,21 +30,20 @@ export class TituloComponent implements OnInit {
   constructor(private router: Router, private authservice: AuthService, private favService: FavService, private fetchService: FetchService) { }
 
   ngOnInit(): void {
-    const dividi = this.router.url.replace("/titulo/", "").split('/');
+    const dividi = this.router.url.replace("/home/", "").split('/');
     const route = dividi[0];
-    this.categoria = route; 
-    
-    if(route == 'filmes'){
+    this.categoria = route;     
+    if(route == 'filme'){
       this.fetchService.getFilme().then(response => {
         this.filme = response.data;
       })
     }
-    if(route == 'series'){
+    if(route == 'serie'){
       this.fetchService.getSerie().then(response => {
         this.filme = response.data;
       })
     }
-    if(route == 'jogos'){
+    if(route == 'jogo'){
       this.fetchService.getJogo().then(response => {
         this.jogo = response.data;
       })

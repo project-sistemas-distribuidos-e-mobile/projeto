@@ -4,14 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
-import { FilmesComponent } from './components/filmes/filmes.component';
-import { SeriesComponent } from './components/series/series.component';
-import { AnimationsComponent } from './components/animacoes/animations.component';
-import { GamesComponent } from './components/games/games.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
-import { HomeComponent } from './components/home/home.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,23 +19,18 @@ import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingInterceptor } from 'src/interceptors/loading.interceptor';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarouselComponent,
-    FilmesComponent,
-    SeriesComponent,
-    AnimationsComponent,
-    GamesComponent,
-    FooterComponent,
     PesquisaComponent,
-    HomeComponent,
     TituloComponent,
     LoginComponent,
     CadastroComponent,
     FavoritosComponent,
     LoadingComponent,
+    NotfoundComponent,
   ],
   imports: [
     HttpClientModule,
@@ -55,11 +43,14 @@ import { LoadingInterceptor } from 'src/interceptors/loading.interceptor';
     HotToastModule.forRoot(),
     MatProgressSpinnerModule,
   ],
-  providers: [AuthService,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoadingInterceptor,
-    multi: true
-  }],
+  providers: [AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
