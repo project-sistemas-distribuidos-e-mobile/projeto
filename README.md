@@ -1,10 +1,12 @@
 # Projeto Sistemas Distribuidos e Mobile
 
-Nome do Aplicativo ➡ :construction:  Em breve :construction:
+Nome do Aplicativo ClickMovies
 
 This project was developed with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2 and [IONIC](https://ionicframework.com/) for the front-end and [NojeJS](https://nodejs.org/en/) for the back-end and [Firebase](https://firebase.google.com/) for the Database.
 
 The project consists on a Web App for search information about movies and games. Our front-end allows the user to realize a search by name and the back-end calls one or both of the two external APIs ([TMDB](https://www.themoviedb.org/documentation/api) and [IGDB](https://api-docs.igdb.com/#about)) for fecth the requested data. Then our application shows the data fetched on a beautiful way.
+
+Google Docs -> [Other Documents](https://docs.google.com/document/d/1yqmfrhmdaKIrdaT5l3nYjOFbd2pnD3jUAjQLLq-oIUA/edit?usp=sharing).
 
 ## Development front-end server
 
