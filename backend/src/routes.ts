@@ -36,7 +36,7 @@ routes.post('/titulo/:categoria/:id', (req, res) => {
     id = req.params['id'];
     res.status(200).send({"status": "received"});
 });
-routes.get('/filme', FilmesController.buscarFilmePorId); 
+routes.get('/filme',FilmesController.buscarFilmePorId); 
 routes.get('/serie', SeriesController.buscarSeriePorId);
 routes.get('/jogo', JogosControllers.buscarJogoPorId);
 export {routes, busca, id, categoria, pagina};
