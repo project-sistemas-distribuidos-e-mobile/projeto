@@ -7,7 +7,7 @@ const app = expres();
 
 //consição para realizar requisições para o servidor a partir do mesmo host
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: ['http://localhost:4200', 'https://proj-sis-dist.web.app']
 }));
 
 //utilização das rotas criadas no arquivo de rotas

@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,50 +8,11 @@ const Jogo_1 = require("../models/Jogo");
 const TituloJogo_1 = require("../models/TituloJogo");
 exports.default = {
     //Retorna um array de 20 jogos conforme o Modelo
-    buscarJogos(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let array_de_jogos = [];
-            const jogos_model = new JogoService_1.default();
-            const response = yield jogos_model.getJogos;
-            try {
-                response.forEach(element => {
-                    const jogo = new Jogo_1.Jogo();
-                    jogo.id = element.id;
-                    jogo.nome = element.name;
-                    jogo.descricao = element.summary;
-                    if (element.cover != undefined) {
-                        jogo.imagem += element.cover['image_id'] + '.jpg';
-                    }
-                    else if (element.artworks != undefined) {
-                        jogo.imagem += element.artworks['image_id'] + '.jpg';
-                    }
-                    else if (element.screenshots != undefined) {
-                        jogo.imagem += element.screenshots['image_id'] + '.jpg';
-                    }
-                    if (element.artworks != undefined) {
-                        jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
-                    }
-                    else if (element.screenshots != undefined) {
-                        jogo.background_imagem += element.screenshots[1]['image_id'] + '.jpg';
-                    }
-                    else {
-                        jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
-                    }
-                    array_de_jogos.push(jogo);
-                });
-            }
-            catch (error) {
-                console.log(error);
-            }
-            return res.json(array_de_jogos);
-        });
-    },
-    //Retorna um array de 10 jogos buscados pelo nome conforme o Modelo
-    buscarJogoPorNome(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let array_de_jogos = [];
-            const jogos = new JogoService_1.default();
-            const response = yield jogos.getJogoPorNome;
+    async buscarJogos(req, res) {
+        let array_de_jogos = [];
+        const jogos_model = new JogoService_1.default();
+        const response = await jogos_model.getJogos;
+        try {
             response.forEach(element => {
                 const jogo = new Jogo_1.Jogo();
                 jogo.id = element.id;
@@ -75,68 +27,101 @@ exports.default = {
                 else if (element.screenshots != undefined) {
                     jogo.imagem += element.screenshots['image_id'] + '.jpg';
                 }
+                if (element.artworks != undefined) {
+                    jogo.background_imagem += element.artworks[0]['image_id'] + '.jpg';
+                }
+                else if (element.screenshots != undefined) {
+                    jogo.background_imagem += element.screenshots[1]['image_id'] + '.jpg';
+                }
+                else {
+                    jogo.background_imagem = 'https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg';
+                }
                 array_de_jogos.push(jogo);
             });
-            return res.json(array_de_jogos);
+        }
+        catch (error) {
+            console.log(error);
+        }
+        return res.json(array_de_jogos);
+    },
+    //Retorna um array de 10 jogos buscados pelo nome conforme o Modelo
+    async buscarJogoPorNome(req, res) {
+        let array_de_jogos = [];
+        const jogos = new JogoService_1.default();
+        const response = await jogos.getJogoPorNome;
+        response.forEach(element => {
+            const jogo = new Jogo_1.Jogo();
+            jogo.id = element.id;
+            jogo.nome = element.name;
+            jogo.descricao = element.summary;
+            if (element.cover != undefined) {
+                jogo.imagem += element.cover['image_id'] + '.jpg';
+            }
+            else if (element.artworks != undefined) {
+                jogo.imagem += element.artworks['image_id'] + '.jpg';
+            }
+            else if (element.screenshots != undefined) {
+                jogo.imagem += element.screenshots['image_id'] + '.jpg';
+            }
+            array_de_jogos.push(jogo);
         });
+        return res.json(array_de_jogos);
     },
     //Retorna um jogo especifico buscados pelo ID conforme o Modelo
-    buscarJogoPorId(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const jogo = new TituloJogo_1.TituloJogo();
-            const fetch = new JogoService_1.default();
-            const response = yield fetch.getJogoPorID;
-            try {
-                response.forEach(element => {
-                    jogo.id = element.id;
-                    jogo.nome = element.name;
-                    jogo.descricao = element.summary;
-                    const date = new Date(element.first_release_date * 1000);
-                    const release = date.getDate() + '-' + (date.getMonth() == 0 ? date.getMonth() + 1 : date.getMonth()) + '-' + date.getFullYear();
-                    jogo.data_lancamento = release;
-                    jogo.nota = element.rating != undefined ? element.rating.toFixed(2) : 0;
-                    if (element.genres.length >= 1) {
-                        element.genres.forEach(genre => {
-                            jogo.generos.push(genre['name']);
-                        });
-                    }
-                    if (element.involved_companies.length >= 1) {
-                        element.involved_companies.forEach(produtora => {
-                            jogo.produtoras.push(produtora['company']['name']);
-                        });
-                    }
-                    if (element.platforms.length >= 1) {
-                        element.platforms.forEach(plataforma => {
-                            jogo.plataformas.push(plataforma['name']);
-                        });
-                    }
-                    if (element.cover != undefined) {
-                        jogo.poster += element.cover['image_id'] + '.jpg';
-                        jogo.bg_poster += element.cover['image_id'] + '.jpg';
-                    }
-                    else if (element.artworks != undefined) {
-                        jogo.poster += element.artworks[0]['image_id'] + '.jpg';
-                        jogo.bg_poster += element.artworks[1]['image_id'] + '.jpg';
-                    }
-                    if (element.websites.length >= 1) {
-                        element.websites.forEach(website => {
-                            if (website['url'].includes('store')) {
-                                jogo.website.push(website['url']);
-                            }
-                            if (website['url'].includes('nintendo')) {
-                                jogo.website.push(website['url']);
-                            }
-                            if (website['url'].includes(element.name.toLowerCase().replaceAll(/\s/g, ''))) {
-                                jogo.website.push(website['url']);
-                            }
-                        });
-                    }
-                });
-            }
-            catch (error) {
-                console.log(error);
-            }
-            return res.json(jogo);
-        });
+    async buscarJogoPorId(req, res) {
+        const jogo = new TituloJogo_1.TituloJogo();
+        const fetch = new JogoService_1.default();
+        const response = await fetch.getJogoPorID;
+        try {
+            response.forEach(element => {
+                jogo.id = element.id;
+                jogo.nome = element.name;
+                jogo.descricao = element.summary;
+                const date = new Date(element.first_release_date * 1000);
+                const release = date.getDate() + '-' + (date.getMonth() == 0 ? date.getMonth() + 1 : date.getMonth()) + '-' + date.getFullYear();
+                jogo.data_lancamento = release;
+                jogo.nota = element.rating != undefined ? element.rating.toFixed(2) : 0;
+                if (element.genres.length >= 1) {
+                    element.genres.forEach(genre => {
+                        jogo.generos.push(genre['name']);
+                    });
+                }
+                if (element.involved_companies.length >= 1) {
+                    element.involved_companies.forEach(produtora => {
+                        jogo.produtoras.push(produtora['company']['name']);
+                    });
+                }
+                if (element.platforms.length >= 1) {
+                    element.platforms.forEach(plataforma => {
+                        jogo.plataformas.push(plataforma['name']);
+                    });
+                }
+                if (element.cover != undefined) {
+                    jogo.poster += element.cover['image_id'] + '.jpg';
+                    jogo.bg_poster += element.cover['image_id'] + '.jpg';
+                }
+                else if (element.artworks != undefined) {
+                    jogo.poster += element.artworks[0]['image_id'] + '.jpg';
+                    jogo.bg_poster += element.artworks[1]['image_id'] + '.jpg';
+                }
+                if (element.websites.length >= 1) {
+                    element.websites.forEach(website => {
+                        if (website['url'].includes('store')) {
+                            jogo.website.push(website['url']);
+                        }
+                        if (website['url'].includes('nintendo')) {
+                            jogo.website.push(website['url']);
+                        }
+                        if (website['url'].includes(element.name.toLowerCase().replaceAll(/\s/g, ''))) {
+                            jogo.website.push(website['url']);
+                        }
+                    });
+                }
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+        return res.json(jogo);
     }
 };

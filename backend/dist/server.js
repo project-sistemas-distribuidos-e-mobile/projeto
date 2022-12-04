@@ -10,11 +10,11 @@ const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 //consição para realizar requisições para o servidor a partir do mesmo host
 app.use((0, cors_1.default)({
-    origin: 'http://localhost:4200'
+    origin: ['http://localhost:4200', 'https://proj-sis-dist.web.app']
 }));
 //utilização das rotas criadas no arquivo de rotas
 app.use(routes_1.routes);
 //indicação da porta de escuta do servidor
 app.listen(5000, () => {
-    console.log('Server is running.');
+    console.log('Server is running. 🔥');
 });
